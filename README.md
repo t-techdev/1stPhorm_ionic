@@ -4,6 +4,10 @@ This repository holds the source code for the Ionic application: "My Transphorma
 
 This application was originally commissioned by 1st Phorm to manage their My Transphormation Starts Today challenges. The challenge is a contest which occurs 4 times a year. Each challenge is 8 weeks long. Transphormers sign up during the intial sign-up period of 1-2 weeks.
 
+## Live Urls
+- iOS: https://apps.apple.com/us/app/1st-phorm/id1445819600
+- Android: https://play.google.com/store/apps/details?id=com.firstphorm.apps&hl=en_US&gl=US
+
 ## Requirements
 
 - Node (10.x)
