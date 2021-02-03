@@ -1,0 +1,12 @@
+<ng-container>
+  <div class="chat-wrapper"
+       [class.chat-receiver]="message.from_id !== senderId"
+       [class.chat-sender]="message.from_id === senderId">
+    <div class="wrapper-inner">
+      <div class="time">{{ sentAt }}</div>
+      <div class="message-parts">
+        <div #messageRef class="message-part"></div>
+      </div>
+    </div>
+  </div>
+</ng-container>

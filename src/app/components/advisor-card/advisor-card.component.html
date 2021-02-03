@@ -1,0 +1,12 @@
+<section class="advisor-card ion-margin-top ion-padding">
+  <ion-avatar>
+    <ion-img *ngIf="advisor.transphormer?.profile_picture_url" [src]="advisor.transphormer?.profile_picture_url"></ion-img>
+    <ion-icon *ngIf="!advisor.transphormer?.profile_picture_url" src='/assets/icon/profile.svg'></ion-icon>
+  </ion-avatar>
+  <div class="details ion-margin-start">
+    <div class="name">{{ advisor.transphormer.display_name }}</div>
+    <div *ngIf="advisor.instagram" class="instagram">{{ advisor.instagram }}</div>
+    <div *ngIf="advisor.twitter" class="twitter">{{ advisor.twitter }}</div>
+    <div *ngIf="advisor.legionnaire_url" class="legionnaire-id">{{ advisor.legionnaire_url }}</div>
+  </div>
+</section>

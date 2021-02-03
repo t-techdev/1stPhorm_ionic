@@ -1,0 +1,14 @@
+<div class="main" tappable (click)="openEditFoodItemEvent(foodItem)">
+  <div class="food-item-image">
+    <img *ngIf="foodItem.thumbnail" [src]="foodItem.thumbnail"/>
+    <img *ngIf="!foodItem.thumbnail" src="assets/nutrition/nofood.png"/>
+  </div>
+  <div class="item-content">
+    <div>{{ foodItem.name }}</div>
+    <div class="calories-color">{{foodItem.calories | number:'0.0-0' }} cal</div>
+    <div class="sub-line">
+      Protein: {{foodItem.protein | number:'0.0-0' }} Carbs: {{foodItem.carbs | number:'0.0-0' }} Fats: {{foodItem.fats | number:'0.0-0' }}
+      Fiber: {{foodItem.fiber | number:'0.0-0'}}
+    </div>
+  </div>
+</div>

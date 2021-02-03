@@ -1,0 +1,14 @@
+<section class="card" *ngIf="goalValues && displayMacros">
+  <div class="header">
+    <div>Macros</div>
+    <div *ngIf="calsRemaining >= 1">{{ calsRemaining }} <span class="dim">CAL LEFT</span></div>
+    <div *ngIf="calsRemaining < 0">{{ -calsRemaining }} <span class="dim">CAL OVER</span></div>
+  </div>
+  <div class="macros">
+    <app-dashboard-macro [goal]="goalValues.calories" macroType="calories" [macroValue]="displayMacros.calories"></app-dashboard-macro>
+    <app-dashboard-macro [goal]="goalValues.protein" macroType="protein" [macroValue]="displayMacros.protein"></app-dashboard-macro>
+    <app-dashboard-macro [goal]="goalValues.carbs" macroType="carbs" [macroValue]="displayMacros.carbs"></app-dashboard-macro>
+    <app-dashboard-macro [goal]="goalValues.fats" macroType="fats" [macroValue]="displayMacros.fats"></app-dashboard-macro>
+  </div>
+  <ng-content></ng-content>
+</section>

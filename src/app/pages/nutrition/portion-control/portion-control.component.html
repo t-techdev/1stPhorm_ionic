@@ -1,0 +1,13 @@
+<ng-container *ngIf="(nutritionData$ | async) as meals">
+  <ion-list lines="none">
+    <app-portion-control-meal [meal]="meal"
+                              [mealIndex]="i"
+                              [showAmounts]="showAmounts"
+                              [activeDate]="activeDate"
+                              *ngFor="let meal of meals; let i = index"
+                              (foodTapped)="pickItem(meal, $event)">
+    </app-portion-control-meal>
+    <app-portion-control-supplements [supplements]="activeSupplements$ | async">
+    </app-portion-control-supplements>
+  </ion-list>
+</ng-container>

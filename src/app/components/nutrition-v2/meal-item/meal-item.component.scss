@@ -1,0 +1,90 @@
+.row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-transform: uppercase;
+  padding: 5px 20px;
+}
+
+.col-1 {
+  width: 20%;
+}
+
+.col-2 {
+  width: 20%;
+  text-align: center;
+}
+
+.col-space {
+  width: 4%;
+
+  ion-icon {
+    color: #00909a;
+    font-size: 14px;
+    vertical-align: middle;
+  }
+}
+
+.title {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.values {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: capitalize;
+  color: var(--dim);
+}
+
+.meal_header {
+  ion-label {
+    font-size: 14px;
+  }
+  .dim {
+    margin-right: var(--default-margin);
+    &.blue {
+      margin-right: 0;
+      color: var(--azure);
+      font-size: large;
+    }
+    &.more {
+      &.disabled {
+        color: var(--ice-blue);
+      }
+      margin-left: var(--default-margin);
+      margin-right: 0px;
+      margin-top: 2px;
+      float: right;
+      font-size: x-large;
+      color: var(--ion-color-light-gray-blue);
+    }
+  }
+}
+
+.calories-color {
+  color: #1fb2d2;
+}
+
+.protein-color {
+  color: #fba04b;
+}
+
+.carbs-color {
+  color: #12c910;
+}
+
+.fat-color {
+  color: #f8617a;
+}
+
+.show-more {
+  position: relative;
+  right: 10px;
+}
+
+.edit-item {
+  position: relative;
+  right: 13px;
+}

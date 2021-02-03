@@ -1,0 +1,87 @@
+.div_header {
+    display: flex;
+    justify-content: space-between;
+    .title {
+        font-weight: bold;
+        font-size: 14px;
+    }
+    .dim {
+        float: right;
+        font-size: large;
+    }
+}
+
+.div_wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.meal-list {
+    padding: var(--default-margin);
+}
+
+.meal-name {
+    font-size: 14px;
+    font-weight: 600;
+    padding: var(--default-margin);
+}
+
+.food-list {
+    background: #f4f4f4;
+    padding-left: var(--default-margin);
+    font-size: 12px;
+    font-weight: 600;
+    padding: var(--default-margin);
+    .food-item {
+        margin-bottom: var(--default-margin);
+        div > span {
+            margin-top: var(--default-margin);
+            display: block;
+            color: var(--dim);
+        }
+    }
+}
+
+.total {
+    margin-bottom: var(--default-margin);
+    padding: var(--default-margin);
+    .food-list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .total-item {
+            text-align: center;
+            span {
+                display: block;
+                font-size: large;
+                margin-top: var(--default-margin);
+            }
+        }
+    }
+}
+
+.empty-state {
+    text-align: center;
+}
+.desc {
+    text-align: left;
+    font-size: 14px;
+    color: var(--grey-mid);
+}
+
+.calories-color {
+    color: #1fb2d2;
+}
+
+.protein-color {
+    color: #fba04b;
+}
+  
+.carbs-color {
+    color: #12c910;
+}
+  
+.fat-color {
+    color: #f8617a;
+}   

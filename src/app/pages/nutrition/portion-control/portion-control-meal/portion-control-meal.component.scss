@@ -1,0 +1,41 @@
+.food-header {
+  .dim {
+    margin-right: var(--default-margin);
+  }
+}
+
+.selection-icon {
+
+  &.blue {
+    font-size: 26pt;
+    color: var(--azure);
+  }
+
+  &.green {
+    font-size: 28pt;
+    color: var(--ion-1p-green);
+  }
+}
+
+ion-thumbnail {
+  width: 48px;
+  height: 48px;
+  margin-right: var(--default-margin);
+  margin-top: calc(var(--default-margin) * 0.4);
+}
+
+section {
+  > :last-child:not(.food-header) {
+    padding-bottom: calc(var(--default-margin) * 0.7);
+  }
+}
+
+ion-item {
+  padding: 2px 0;
+
+  ion-label {
+    --color: var(--ion-1p-text-grey1);
+    font-weight: 600;
+    font-size: 14px;
+  }
+}

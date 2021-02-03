@@ -1,0 +1,24 @@
+.url-container {
+  border-left: solid 3px var(--ion-color-brand);
+  padding-left: var(--default-margin);
+  display: flex;
+
+  .product-info {
+    margin-left: var(--default-margin);
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin: 0;
+      font-size: 12pt;
+    }
+  }
+
+  .product-image {
+    box-sizing: content-box;
+    width: 55px;
+    border-radius: 4px;
+    background: white;
+    padding: .25em;
+  }
+}

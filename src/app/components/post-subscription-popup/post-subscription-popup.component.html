@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Premium Settings</ion-title>
+    <ion-buttons slot="end" (click)="close()">
+      <ion-icon name="close" slot="icon-only"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="full-height ion-padding-horizontal flexible-container ion-padding-bottom" *ngIf="user">
+    <app-step-counter [totalSteps]="totalSteps"
+                      [currentStep]="currentStep"
+                      (stepTapped)="currentStep = $event"
+    ></app-step-counter>
+
+    <app-subscription-advisor-info *ngIf="step === 'advisor' && user.linked_trainer"
+                                   class="flexible-container"
+                                   (sendMessage)="sendMessage($event)"
+                                   [advisorTransphormer]="user.linked_trainer.trainer.transphormer"
+                                   (next)="next()">
+    </app-subscription-advisor-info>
+
+    <app-subscription-nutrition-plan *ngIf="step === 'nutrition'"
+                                     class="flexible-container"
+                                     [values]="data"
+                                     (updated)="updateValues($event)"
+                                     (next)="next()">
+    </app-subscription-nutrition-plan>
+
+    <app-subscription-training-plan *ngIf="step === 'workout'"
+                                    class="flexible-container"
+                                    [values]="data"
+                                    (updated)="updateValues($event)"
+                                    (next)="finish()">
+    </app-subscription-training-plan>
+  </div>
+
+</ion-content>

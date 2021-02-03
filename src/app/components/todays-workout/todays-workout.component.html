@@ -1,0 +1,21 @@
+<section class="card">
+  <div class="header">
+    <div>Today's Workout</div>
+    <div *ngIf="workoutSession"
+         class="dim ion-text-right">{{workoutSession.workout.name || workoutSession.workout.training.name }}</div>
+  </div>
+  <div class="loading" *ngIf="!workoutSession">
+    <div class="ion-text-center">
+      <ion-spinner name="dots"></ion-spinner>
+    </div>
+  </div>
+  <div class="workouts" *ngIf="workoutSummary">
+    <div *ngFor="let ws of workoutSummary">
+      <svg [ngClass]="{future: ws.future, completed: ws.completed}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="14"/>
+      </svg>
+      <div>{{ws.day}}</div>
+    </div>
+  </div>
+  <ng-content></ng-content>
+</section>

@@ -1,0 +1,42 @@
+ion-content {
+  --background: #FDFDFD;
+}
+
+.title {
+
+  ion-button {
+    height: 20px;
+  }
+
+  h4 {
+    padding: 20px 0;
+  }
+}
+
+ion-list {
+  margin-bottom: 10px
+}
+
+.metric-item {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  min-height: 50px;
+  padding: 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+
+  &:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  ion-icon {
+    color: var(--azure);
+    --icon-default-fill: var(--azure);
+    --icon-default-outer-fill: var(--azure);
+    font-size: 40px;
+  }
+
+  ion-toggle {
+    --background-checked: var(--azure);
+  }
+
+}

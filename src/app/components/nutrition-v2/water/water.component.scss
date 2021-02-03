@@ -1,0 +1,65 @@
+.progress-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 var(--default-margin);
+  padding-bottom: calc(var(--default-margin) * 2);
+  span {
+    font-weight: bold;
+    font-size: 14px;
+    padding: 0 3px;
+  }
+  .color {
+    font-weight: bold;
+    font-size: 14px;
+    color: #1fb2d2;
+  }
+  &.full {
+    .progress {
+      background: var(--ion-color-success);
+    }
+    .color {
+      color: var(--ion-color-success);
+    }
+  }
+}
+
+.goal-bar {
+  width: 100%;
+  margin: 0 auto;
+  background: var(--ice-blue);
+  height: 12px;
+  &.feature {
+    height: 4px;
+    border-radius: 4px;
+    .progress {
+      height: 4px;
+      border-radius: 4px;
+    }
+  }
+  position: relative;
+  overflow: hidden;
+  .progress {
+    height: 12px;
+    background-color: #1fb2d2;
+    transition: all 0.2s ease;
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 var(--default-margin);
+  padding-top: var(--default-margin);
+  border-top: 1px solid var(--ion-color-header);
+}
+.add-water {
+  ion-button {
+    font-size: 12px;
+    height: 32px;
+    text-transform: none;
+  }
+}

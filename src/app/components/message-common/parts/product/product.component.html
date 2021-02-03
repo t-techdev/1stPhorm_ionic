@@ -1,0 +1,15 @@
+<div class="url-type" (click)="openProductUrl(part.url)">
+  <p class="href">{{ part.url }}</p>
+  <div class="url-container">
+    <div class="product-image">
+      <img alt="Product image" [src]="part.imageUrl"/>
+    </div>
+    <div class="product-info">
+      <p>{{ part.name }}</p>
+      <ionic4-star-rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#00AEEF"
+                          defaultColor="#f4f4f4" readonly="true"
+                          [rating]="part.stars" halfStar="true" fontSize="16pt">
+      </ionic4-star-rating>
+    </div>
+  </div>
+</div>

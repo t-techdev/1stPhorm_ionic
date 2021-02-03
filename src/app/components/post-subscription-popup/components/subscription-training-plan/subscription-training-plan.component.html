@@ -1,0 +1,14 @@
+<div class="ion-margin-bottom flexible-container">
+  <app-question
+    [question]="question"
+    [value]="selectedValue"
+    (optionSelected)="chooseOption($event)"
+  ></app-question>
+
+  <div class="mt-auto global-input">
+    <ion-button type="submit"
+                expand="full"
+                (click)="click()">
+      Next</ion-button>
+  </div>
+</div>

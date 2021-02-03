@@ -1,0 +1,24 @@
+form {
+  padding-bottom: 15px;
+}
+
+.premium-note {
+  margin: calc(var(--default-margin) * -1) calc(var(--default-margin) * 2) calc(var(--default-margin) * 3);
+  background: var(--ion-color-warning-lightest);
+  padding: var(--default-margin);
+  p {
+    font-size: 12pt;
+    margin-top: 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+ion-segment-button:nth-child(3).segment-button-checked {
+  border-left-width: var(--border-width);
+}
+
+ion-segment-button:nth-child(3) {
+  border-left-width: 0;
+}

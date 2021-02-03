@@ -1,0 +1,19 @@
+<div>
+  <div class="flex ion-padding macros-not-shown" *ngIf="!fullHeight">
+    <div class="title">My Macros
+      <ion-icon name="help-circle-outline" tappable (click)="showHelp = !showHelp"></ion-icon>
+    </div>
+    <div class='macro-help' *ngIf="showHelp">
+      <p>My Macros</p>
+      These macros have been calculated based on the information you provided and your goals. These macros will automatically adjust
+      as you progress. If you have questions or need help hitting these macros everyday feel free to shoot your Transphormation
+      Advisor a message!
+    </div>
+    <div class="dim" tappable (click)="toggle()">
+      <ion-icon [name]="fullHeight ? 'ios-arrow-up' : 'ios-arrow-down'"></ion-icon>
+    </div>
+  </div>
+  <app-macros-bar *ngIf="fullHeight" [showTopRight]="false" [transphormer]="fullHeight ? transphormer : null" topLeft="My Macros">
+    <ion-icon slot="top-right" tappable (click)="toggle()" [name]="fullHeight ? 'ios-arrow-up' : 'ios-arrow-down'"></ion-icon>
+  </app-macros-bar>
+</div>

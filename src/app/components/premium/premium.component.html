@@ -1,0 +1,16 @@
+<div class='div_img'>
+  <img [src]='image' alt="" />
+  <div class='photo_overlay'></div>
+</div>
+<div class="bottom-content ion-text-center ion-padding">
+  <h3>Upgrade to
+    <span class="premium-crown"><img src='assets/icon/premium.png'/>Premium</span>
+  </h3>
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+  <ion-button expand="block" (click)='continue($event)'>{{ continueButtonText }}</ion-button>
+  <div class="ion-margin-top">
+    <a class="ion-color-medium" (click)='cancelAction()'>{{ cancelText }}</a>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="flexible-container full-height">
+  <div class="header-image">
+    <img [src]="imageSrc"/>
+  </div>
+  <div class="ion-padding flexible-container">
+    <h3 *ngIf="header" class="heading">{{ header }}</h3>
+    <h3 *ngIf="message" class="heading ion-padding-bottom">{{ message }}</h3>
+    <ion-progress-bar
+      [color]="progressColor"
+      [value]="progressValue"
+      ></ion-progress-bar>
+    <ng-content *ngIf="done"></ng-content>
+    <ion-button class="mt-auto" expand="full" *ngIf="done" (click)="next.emit()">{{ nextButtonText }}</ion-button>
+  </div>
+</div>
+

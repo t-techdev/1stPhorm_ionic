@@ -1,0 +1,7 @@
+<section class="meal">
+  <div class="meal-feature">
+    <ng-container *ngFor="let meal of meals">
+      <app-meal-item [nutritionDayId]="nutritionDayId" [meal]="meal" (mealUpdated)="mealUpdated.emit($event)" (mealCopied)="mealCopied.emit($event)"></app-meal-item>
+    </ng-container>
+  </div>
+</section>

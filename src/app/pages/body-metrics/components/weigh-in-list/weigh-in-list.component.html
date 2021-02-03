@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateToMetrics()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Body Metrics</ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<div class="metric-content ion-padding">
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <h3 class="Title">Weight</h3>
+  <div class="chart">
+    <app-timeline-filter (afterDate)="fetchWeighIns($event)"></app-timeline-filter>
+    <app-line-chart
+      #lineChart
+      [chartLabel]="'Weight'"
+      [list]="weights"
+      [labelTransform]="chartLabelMap"
+      [dataTransform]="dataLabelMap"
+      dataKey="weight"
+      [reverseList]="true"
+      [configs]="{user: user}"
+    ></app-line-chart>
+  </div>
+</div>
+<ion-content>
+  <ion-list>
+    <ng-container *ngFor="let weight of weights; let isLast = last; let i = index">
+      <app-metric-record [borderBottom]="isLast" [record]="weight"
+                         [previousRecord]="isLast ? null : weights[i + 1]"
+                         unit="{{ user.unitTypeLabel('weight') }}"
+                         (action)="actions(weight)"
+      ></app-metric-record>
+    </ng-container>
+  </ion-list>
+</ion-content>
+<div class="ion-padding">
+  <ion-button expand="full"
+              (click)="addWeight()"
+              *ngIf="canAddWeighIn"
+  >Add Today's Metric</ion-button>
+</div>

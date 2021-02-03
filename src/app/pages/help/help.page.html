@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Help</ion-title>
+    <ion-buttons slot="end">
+      <div class="logo-button">
+        <div class="tb-logo"></div>
+      </div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="help-content">
+  <section>
+    <h1>Help & Knowledge Base</h1>
+    <p>Need help with the app? Not sure how to use a feature? Want to increase your knowledge?</p>
+    <p><strong>You've come to the right place!</strong></p>
+  </section>
+  <section>
+    <h2>Nutrition</h2>
+    <nav>
+      <ul>
+        <li><a routerLink="nutrition" routerDirection="forward">Overview</a></li>
+        <li><a routerLink="portion-control" routerDirection="forward">Portion Control</a></li>
+        <li><a routerLink="meal-plan" routerDirection="forward">Meal Plan</a></li>
+<!--        <li><a routerLink="cmc" routerDirection="forward">Calorie / Macro Counting</a></li>-->
+      </ul>
+    </nav>
+  </section>
+  <section>
+    <h2>Workouts</h2>
+    <nav>
+      <ul>
+        <li><a routerLink="warmups" routerDirection="forward">Warmups</a></li>
+      </ul>
+    </nav>
+  </section>
+  <section>
+    <h2>General Help</h2>
+    <nav>
+      <ul>
+        <li><a appExternalLink href="https://www.mytransphormationstartstoday.com/help">Application FAQs</a></li>
+        <li><a appExternalLink href="https://www.mytransphormationstartstoday.com/rules-regulations">Rules & Regulations</a></li>
+        <li><a appExternalLink href="https://www.mytransphormationstartstoday.com/terms-conditions">Terms & Conditions</a></li>
+      </ul>
+    </nav>
+  </section>
+</ion-content>

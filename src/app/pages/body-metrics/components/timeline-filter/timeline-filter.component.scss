@@ -1,0 +1,17 @@
+.timeline-container {
+  display: flex;
+  justify-content: space-evenly;
+
+  ion-button {
+    --color: var(--app-paragraph-color);
+    --font-weight: 500;
+  }
+
+  .active {
+    border-bottom: 2px solid var(--azure);
+
+    ion-button {
+      --color: var(--azure);
+    }
+  }
+}

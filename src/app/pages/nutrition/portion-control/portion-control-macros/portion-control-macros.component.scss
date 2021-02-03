@@ -1,0 +1,55 @@
+.macros-not-shown {
+  margin: 0;
+  background: #fff;
+  position: relative;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-right: 8px;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  ion-icon {
+    color: var(--ion-color-light-gray-blue);
+    font-size: x-large;
+  }
+}
+
+.macro-help {
+  position: absolute;
+  background: var(--ion-1p-text-grey);
+  color: var(--ion-color-text-gray);
+  padding: var(--default-margin);
+  width: calc(100% - calc(var(--default-margin)*3));
+  z-index: 1;
+  font-weight: 300;
+  font-size: 11px;
+  line-height: 14px;
+  border-radius: 4px;
+  top: 45px;
+  p {
+    color: #fff;
+    margin: 0 0 var(--default-margin);
+    font-size: 14px;
+  }
+  &:before
+  {
+    content: '';
+    position: absolute;
+    top:-7px;
+    left: 86px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0px 7.5px 7px 7.5px;
+    border-color: transparent transparent var(--ion-1p-text-grey) transparent;
+  }
+}

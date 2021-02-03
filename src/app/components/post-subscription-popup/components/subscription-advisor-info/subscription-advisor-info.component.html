@@ -1,0 +1,44 @@
+<div class="flexible-container full-height ion-padding-bottom">
+  <section>
+    <div class="profile-photo">
+      <img [src]="advisorTransphormer?.profile_picture_url" *ngIf="advisorTransphormer?.profile_picture_url">
+      <ion-icon size="large" *ngIf="!advisorTransphormer?.profile_picture_url" src='/assets/icon/profile.svg'></ion-icon>
+    </div>
+
+    <h5>Meet Your Advisor</h5>
+
+    <p>{{ advisorTransphormer.first_name }} is your personal advisor. Chat with {{ advisorTransphormer.sex === Sex.Male ? 'him' : 'her' }} directly from the main
+      navigation bar to get personalized advice about nutrition, workouts, supplements, and more.</p>
+
+    <p class="ion-no-margin">Send {{ advisorTransphormer.first_name }} a message now:</p>
+
+    <div class="say-hi global-input">
+      <div>
+        <ion-button type="submit"
+                    fill="outline"
+                    (click)="sendMessageOne()"
+                    [disabled]="messageOneSent"
+                    expand="full">
+          <span *ngIf="!messageOneSent">Hi {{ advisorTransphormer.first_name }}!</span>
+          <span *ngIf="messageOneSent">Sent!</span>
+        </ion-button>
+      </div>
+      <div>
+        <ion-button type="submit"
+                    fill="outline"
+                    (click)="sendMessageTwo()"
+                    [disabled]="messageTwoSent"
+                    expand="full">
+          <span *ngIf="!messageTwoSent">Let's do this!</span>
+          <span *ngIf="messageTwoSent">Sent!</span>
+        </ion-button>
+      </div>
+    </div>
+  </section>
+  <div class="mt-auto">
+    <ion-button type="submit"
+                expand="full"
+                (click)="click()">
+      Next</ion-button>
+  </div>
+</div>

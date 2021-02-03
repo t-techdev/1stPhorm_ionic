@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Contact Info</ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <ion-list>
+    <form [formGroup]="form" (ngSubmit)="updateProfile()">
+      <p class="ion-padding-horizontal info">This information is <em>solely</em> used for contacting content participants with contest related information,
+        rewards, and prizes.</p>
+      <div class="global-input ion-padding">
+        <ion-label position="stacked">Address</ion-label>
+        <ion-input type="text" formControlName="address"></ion-input>
+      </div>
+      <div class="global-input ion-padding">
+        <ion-label position="stacked">City</ion-label>
+        <ion-input type="text" formControlName="city"></ion-input>
+      </div>
+      <ion-grid class="ion-padding sorta-padded">
+        <ion-row>
+          <ion-col>
+            <div class="global-input">
+              <ion-label position="stacked">State</ion-label>
+              <ion-input type="text" formControlName="state"></ion-input>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="global-input">
+              <ion-label position="stacked">Zip code</ion-label>
+              <ion-input type="text" formControlName="postal_code"></ion-input>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div class="global-input ion-padding">
+        <ion-label position="stacked">Country</ion-label>
+        <ion-input type="text" formControlName="country"></ion-input>
+      </div>
+      <div class="global-input ion-padding">
+        <ion-label position="stacked">Phone</ion-label>
+        <ion-input type="text" formControlName="phone"></ion-input>
+      </div>
+      <div class="global-input ion-padding">
+        <ion-label position="stacked">Instagram</ion-label>
+        <ion-input type="text" formControlName="instagram"></ion-input>
+      </div>
+      <div class="global-input ion-padding">
+        <ion-label position="stacked">Twitter</ion-label>
+        <ion-input type="text" formControlName="twitter"></ion-input>
+      </div>
+      <div class="global-input ion-padding padding">
+        <ion-button type="submit" color="primary" expand="full">Update</ion-button>
+      </div>
+    </form>
+  </ion-list>
+</ion-content>

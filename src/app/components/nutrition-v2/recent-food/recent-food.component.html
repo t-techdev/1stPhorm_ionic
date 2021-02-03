@@ -1,0 +1,14 @@
+<div class="recent around-this-time">
+  <h6 class="title">Recent</h6>
+  <ul>
+    <ng-container *ngFor="let foodItem of recentItems">
+      <li tappable (click)="openRecentFood.emit(foodItem)">
+        <span class="food-name">{{ foodItem.name }}</span>
+        <br>
+        <span class="food-quantity">{{ foodItem.serving_size.amount }} {{ foodItem.serving_size.unit }}
+          <span class="food-cal">{{foodItem.serving_size.calories}} cal</span>
+        </span>
+      </li>
+    </ng-container>
+  </ul>
+</div>

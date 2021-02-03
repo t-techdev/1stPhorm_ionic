@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Profile</ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <ion-list>
+    <form [formGroup]="form" (ngSubmit)="updateProfile()">
+      <div class="global-input ion-padding">
+        <transphormer-profile-picture [profileImageUrl]="this.profilePictureUrl"></transphormer-profile-picture>
+      </div>
+      <div class="global-input ion-padding">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="email" disabled="true" [value]="email"></ion-input>
+      </div>
+      <ion-grid class="ion-padding sorta-padded">
+        <ion-row class="ion-padding-bottom">
+          <ion-col>
+            <div class="global-input">
+              <ion-label position="stacked">First Name</ion-label>
+              <ion-input type="text" formControlName="first_name"></ion-input>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="global-input">
+              <ion-label position="stacked">Last Name</ion-label>
+              <ion-input type="text" formControlName="last_name"></ion-input>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-padding-vertical">
+          <ion-col>
+            <div class="global-input">
+              <ion-label position="stacked">Sex</ion-label>
+              <ion-segment mode="ios" [value]="form.get('sex').value" (ionChange)="sexChanged($event)">
+                <ion-segment-button mode="ios" [value]="SexValues.Male">
+                  <ion-label>Male</ion-label>
+                </ion-segment-button>
+                <ion-segment-button mode="ios" [value]="SexValues.Female">
+                  <ion-label>Female</ion-label>
+                </ion-segment-button>
+              </ion-segment>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-padding-vertical">
+          <ion-col>
+            <div class="global-input">
+              <ion-label position="stacked">Measurement units</ion-label>
+              <ion-segment mode="ios" [value]="unitType" (ionChange)="unitChanged($event)">
+                <ion-segment-button mode="ios" [value]="UnitTypes.Imperial">
+                  <ion-label>in/lb</ion-label>
+                </ion-segment-button>
+                <ion-segment-button mode="ios" [value]="UnitTypes.Metric">
+                  <ion-label>cm/kg</ion-label>
+                </ion-segment-button>
+              </ion-segment>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-padding-top">
+          <ion-col>
+            <div class="global-input" *ngIf="form.get('unit_type').value === UnitTypes.Imperial">
+              <ion-label position="stacked">Height, ft/in</ion-label>
+              <app-height [height]="form.get('height').value" (heightChange)="form.get('height').setValue($event)">
+              </app-height>
+              <small *ngIf="form.get('unit_type').value !== transphormer?.unit_type">This value has been converted from cm to inches. </small>
+            </div>
+            <div class="global-input" *ngIf="form.get('unit_type').value === UnitTypes.Metric">
+              <ion-label position="stacked">Height, cm</ion-label>
+              <ion-input formControlName="height" type="number"></ion-input>
+              <small *ngIf="form.get('unit_type').value !== transphormer?.unit_type">This value has been converted from inches to cm. </small>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="global-input">
+              <ion-label position="stacked">Date of Birth</ion-label>
+              <ion-datetime display-format="MM/DD/YYYY" formControlName="date_of_birth"></ion-datetime>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div class="global-input ion-padding">
+        <ion-label position="stacked">Goal Weight, {{ form.get('unit_type').value === UnitTypes.Imperial ? 'lbs' : 'kg' }}</ion-label>
+        <ion-input type="text" formControlName="goal_weight"></ion-input>
+        <small *ngIf="form.get('unit_type').value !== transphormer?.goal_weight_unit">This value has been converted from {{ transphormer?.goal_weight_unit === UnitTypes.Imperial ? 'lbs to kgs' : 'kgs to lbs'}}. </small>
+        <small *ngIf="isMacroCalorieCounting">Your goal weight is influencing your daily Macros.</small>
+      </div>
+      <div class="global-input ion-padding padding">
+        <ion-button type="submit" color="primary" expand="full">Update</ion-button>
+      </div>
+    </form>
+  </ion-list>
+</ion-content>

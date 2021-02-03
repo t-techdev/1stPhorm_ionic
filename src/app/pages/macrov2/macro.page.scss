@@ -1,0 +1,81 @@
+button.logo-button {
+  background: inherit;
+  --background: inherit;
+}
+
+.tb-logo {
+  background-image: url('../../../assets/icon/logo.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  font-size: 32px;
+  width: 1em;
+  height: 1em;
+}
+
+ion-toolbar {
+  ion-icon {
+    font-size: x-large;
+  }
+}
+
+.inline {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  &.feature {
+      justify-content: space-between;
+      padding: var(--default-margin);
+      margin-bottom: var(--default-margin);
+  }
+}
+  
+.hide {
+  display: none;
+}
+
+app-macros {
+  width: 23%;
+}
+  
+.add-water {
+  ion-button {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 10px;
+      color: #1fb2d2;
+  }
+}
+  
+.meal {
+  background-color: #f4f4f4;
+}
+  
+.title {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.values {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: capitalize;
+  color: var(--dim);
+}
+    
+.calories {
+  color: #1fb2d2;
+}
+
+.protein-color {
+  color: #fba04b;
+}
+
+.carbs-color {
+  color: #12c910;
+}
+
+.fat-color {
+  color: #f8617a;
+}

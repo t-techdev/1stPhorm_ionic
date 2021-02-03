@@ -1,0 +1,22 @@
+ion-item {
+  padding: 2px 0;
+  ion-label {
+    --color: var(--ion-1p-text-grey1);
+    font-weight: 600;
+    font-size: 14px;
+    &.food-guide {
+      font-size: 18px;
+    }
+  }
+}
+
+ion-list.list-lines-none {
+  margin-bottom: 0;
+}
+
+.add-supplements {
+  color: var(--azure);
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: center;
+}

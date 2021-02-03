@@ -1,0 +1,32 @@
+<div class="around-this-time" *ngIf="aroundThisTimeItems.length !== 0">
+  <h6 class="title">Around This Time</h6>
+  <ul>
+    <ng-container *ngFor="let foodItem of aroundThisTimeItems; let i = index;">
+      <ng-container *ngIf="i <= 2 || (i > 2 && showMoreAroundThisTime)">
+        <ng-container [ngSwitch]="foodItem.type">
+          <li *ngSwitchCase="'tracked-item'" tappable (click)="openRecentFood.emit(foodItem.data)">
+            <span class="food-name">{{ foodItem.data.name }}</span>
+            <br>
+            <span class="food-quantity">{{foodItem.data.serving_size.calories}} calories {{ foodItem.data.serving_size.amount }} {{ foodItem.data.serving_size.unit
+              }}
+            </span>
+          </li>
+          <li *ngSwitchCase="'meal'" tappable class="meal-template" (click)="addMealTemplate.emit(foodItem.data)">
+            <span>{{ foodItem.data.name }}
+              <ion-icon name="restaurant"></ion-icon>
+            </span>
+            <span class="food-quantity">
+              <span *ngFor="let item of foodItem.data.items; let last = last">{{ item.name }}{{ last ? '' : ', ' }}</span>
+            </span>
+          </li>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ul>
+  <button (click)="showMoreAroundThisTime = !showMoreAroundThisTime" *ngIf="aroundThisTimeItems.length > 3">
+    <span class="title">Show {{ showMoreAroundThisTime ? 'Less' : 'More'}} </span>
+    <br/>
+    <span class="tag"> Showing {{ showMoreAroundThisTime ? aroundThisTimeItems.length : 3 }} of {{ aroundThisTimeItems.length }} results
+    </span>
+  </button>
+</div>

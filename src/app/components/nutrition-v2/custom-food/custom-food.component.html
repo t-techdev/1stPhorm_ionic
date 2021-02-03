@@ -1,0 +1,121 @@
+<form (ngSubmit)="save()" [formGroup]="form" class="flexible-container full-height">
+  <div class="global-input">
+    <ion-label>Food Name</ion-label>
+    <ion-input class="food-name" formControlName="name" [attr.disabled]="!isCustom"></ion-input>
+  </div>
+  <div class="global-input">
+    <ion-label>Calories</ion-label>
+    <ion-input type="number" class="calories-color" *ngIf="isCustom && !customConversion"
+               [formControlName]="isCustom? 'calories' : 'calculatedCalories'"
+               [attr.disabled]="!isCustom"></ion-input>
+    <ion-input type="number" class="calories-color prim" *ngIf="(isCustom && customConversion) || (!isCustom)"
+               [formControlName]="!isConsumable ? 'calories' : 'calculatedCalories'"
+               (focus)="forCustomFoodFocus()" (click)="forCustomFoodFocus()" [attr.disabled]="!isCustom"></ion-input>
+  </div>
+  <div class="global-input">
+    <div class="inline">
+      <div class="category">
+        <ion-label>Protein (g)</ion-label>
+        <ion-input type="number" class="protein-color" *ngIf="isCustom && !customConversion"
+                   [formControlName]="isCustom ? 'protein' : 'calculatedProtein'"
+                   [attr.disabled]="!isCustom"></ion-input>
+        <ion-input type="number" class="protein-color" *ngIf="(isCustom && customConversion) || (!isCustom)"
+                   [formControlName]="!isConsumable ? 'protein' : 'calculatedProtein'"
+                   (focus)="forCustomFoodFocus()" (click)="forCustomFoodFocus()"
+                   [attr.disabled]="!isCustom"></ion-input>
+      </div>
+      <div class="category">
+        <ion-label>Fats (g)</ion-label>
+        <ion-input type="number" class="fat-color" *ngIf="isCustom && !customConversion"
+                   [formControlName]="isCustom ? 'fats' : 'calculatedFats'"
+                   [attr.disabled]="!isCustom"></ion-input>
+        <ion-input type="number" class="fat-color" *ngIf="(isCustom && customConversion) || (!isCustom)"
+                   [formControlName]="!isConsumable ? 'fats' : 'calculatedFats'"
+                   (focus)="forCustomFoodFocus()" (click)="forCustomFoodFocus()"
+                   [attr.disabled]="!isCustom"></ion-input>
+      </div>
+    </div>
+  </div>
+  <div class="global-input">
+    <div class="inline">
+      <div class="category">
+        <ion-label>Carbs (g)</ion-label>
+        <ion-input type="number" class="carbs-color" *ngIf="isCustom && !customConversion"
+                   [formControlName]="isCustom ? 'carbs' : 'calculatedCarbs'"
+                   [attr.disabled]="!isCustom"></ion-input>
+        <ion-input type="number" class="carbs-color" *ngIf="(isCustom && customConversion) || (!isCustom)"
+                   [formControlName]="!isConsumable ? 'carbs' : 'calculatedCarbs'"
+                   (focus)="forCustomFoodFocus()" (click)="forCustomFoodFocus()"
+                   [attr.disabled]="!isCustom"></ion-input>
+      </div>
+      <div class="category">
+        <ion-label>Fiber (g)</ion-label>
+        <ion-input type="number" class="fiber-color" *ngIf="isCustom && !customConversion"
+                   [formControlName]="isCustom ? 'fiber' : 'calculatedFiber'"
+                   [attr.disabled]="!isCustom"></ion-input>
+        <ion-input type="number" class="fiber-color" *ngIf="(isCustom && customConversion) || (!isCustom)"
+                   [formControlName]="!isConsumable ? 'fiber' : 'calculatedFiber'"
+                   (focus)="forCustomFoodFocus()" (click)="forCustomFoodFocus()"
+                   [attr.disabled]="!isCustom"></ion-input>
+      </div>
+    </div>
+  </div>
+  <div class="global-input" formGroupName="serving_size" [class.hide]="!showServing">
+    <div class="inline">
+      <div class="serving">
+        <ion-label>Serving Size</ion-label>
+        <app-factor-number [disable]="_foodItem && isConsumable"
+                           [value]="form.get('serving_size').get('amount').value" (focus)="forCustomFoodFocus()"
+                           (click)="forCustomFoodFocus()"
+                           (valueUpdated)="updateValue(form.get('serving_size').get('amount'), $event)">
+        </app-factor-number>
+      </div>
+      <div class="serving">
+        <ion-label>&nbsp;</ion-label>
+        <ion-select [interfaceOptions]="{header: 'Serving Size'}" formControlName="unit"
+                    (click)="forCustomFoodFocus()" [attr.disabled]="_foodItem && isConsumable">
+          <ion-select-option *ngFor="let servingSize of _defaultServingSizes"
+                             [value]="servingSize.measure">{{ servingSize.measure }}</ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+  </div>
+  <div class="global-input" formGroupName="amount_consumed" *ngIf="isConsumable">
+    <div class="inline">
+      <div class="serving">
+        <ion-label>Amount Consumed</ion-label>
+        <app-factor-number [value]="form.get('amount_consumed').get('amount').value"
+                           (valueUpdated)="updateValue(form.get('amount_consumed').get('amount'), $event)"
+                           [disable]="isDisabledAmountConsumed">
+        </app-factor-number>
+      </div>
+      <div class="serving">
+        <ion-label>&nbsp;</ion-label>
+        <ion-select [interfaceOptions]="{header: 'Amount Consumed'}" formControlName="unit"
+                    [attr.disabled]="isDisabledAmountConsumed">
+          <ion-select-option *ngFor="let servingSize of servingSizes"
+                             [value]="servingSize.measure">{{ servingSize.measure }}</ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+  </div>
+
+  <div class="global-input" *ngIf="showMealSelect">
+    <ion-label position="stacked">Meal</ion-label>
+    <ion-segment mode="ios" [value]="_mealIndex" (ionChange)="changeMealIndex($event)">
+      <ion-segment-button mode="ios" *ngFor="let i of [1,2,3,4,5,6]" [value]="i">
+        <ion-label>{{i}}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div class="mt-auto" [ngClass]="{'flex': isDeletable || confirmingDelete}">
+    <ion-button type="button" expand="full" fill="clear" *ngIf="isDeletable && !confirmingDelete" (click)="delete()">
+      Delete
+    </ion-button>
+    <ion-button type="button" expand="full" fill="clear" *ngIf="confirmingDelete" (click)="cancelDelete()">Don't Delete
+    </ion-button>
+    <ion-button type="submit" expand="full" [color]="updateColor"
+                [disabled]="form.invalid && !confirmingDelete">{{ updateText }}</ion-button>
+  </div>
+</form>

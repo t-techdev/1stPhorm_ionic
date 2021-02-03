@@ -1,0 +1,16 @@
+app-step-counter {
+  padding: var(--default-margin) 0;
+  background: white;
+}
+
+:host {
+  //height: calc(100% - var(--bottom-part));
+}
+
+ion-content {
+
+}
+
+.grow {
+  flex-grow: 1;
+}

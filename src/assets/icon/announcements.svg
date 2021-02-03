@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+<path fill="var(--icon-default-fill)" d="M3 5.5h8v13H3z"/>
+        <path fill="var(--icon-default-outer-fill)" d="M21 3.5H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-13c0-1.1-.9-2-2-2zm-10 15H3v-13h8v13zm10 0h-8v-13h8v13zM14 9h6v1.5h-6V9zm0 2.5h6V13h-6v-1.5zm0 2.5h6v1.5h-6V14z"/>
+</svg>

@@ -1,0 +1,118 @@
+.help-content {
+  font-size: 1em;
+  line-height: 1.5em;
+  font-family: var(--ion-font-family);
+  --background: var(--ion-1p-light);
+  padding: var(--default-margin);
+
+  section {
+    background: var(--ion-1p-white-background);
+    padding: calc(var(--ion-padding, 16px) / 2) var(--ion-padding, 16px);
+    margin-bottom: var(--ion-margin, 1px);
+    &:last-child {
+      padding-bottom: var(--ion-padding, 16px);
+      margin-bottom: calc(var(--ion-padding, 16px) * 2);
+    }
+  }
+
+  h1, h2 {
+    margin: 1em 0 .5em;
+    &:first-child {
+      margin-top: .5em;
+    }
+  }
+
+  h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1.33em;
+    color: var(--black);
+  }
+
+  h2 {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--ion-color-brand-black);
+  }
+
+  p {
+    font-size: 1em;
+    color: var(--brownish-grey);
+  }
+
+  a {
+    line-height: 1.5em;
+    color: var(--azure);
+    text-decoration: none;
+    &.external {
+
+    }
+  }
+
+  ul, ol {
+    padding-left: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    color: var(--brownish-grey);
+  }
+
+  li {
+    color: var(--brownish-grey);
+  }
+
+  ul > li::before {
+    background-color: var(--ion-color-brand-black);
+    border-radius: 50%;
+    content: "";
+    display: inline-block;
+    margin-right: .8em;
+    margin-bottom: .2em;
+    height: .4em;
+    width: .4em;
+  }
+
+  ol {
+    list-style: none;
+    counter-reset: li;
+
+    > li {
+      counter-increment: li;
+    }
+    > li::before {
+      font-weight: 600;
+      content: counter(li) ".";
+      color: var(--ion-color-brand-black);
+      display: inline-block;
+      margin-right: 8px;
+    }
+  }
+
+  a {
+    line-height: 2em;
+    font-size: 1em;
+  }
+
+  a.external::after {
+    background: url(~assets/icon/exit.svg);
+    width: 1.25em;
+    height: 1.25em;
+    display: inline-block;
+    content: "";
+    background-size: cover;
+    position: relative;
+    top: -0.5em;
+  }
+
+  nav {
+    ul {
+      margin: .5em 0 0 .5em;
+    }
+  }
+
+  iframe.vimeo {
+    width: 100%;
+    height: 222px;
+  }
+}

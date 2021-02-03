@@ -1,0 +1,24 @@
+<section class="divider">
+  <ion-item class="food-header" tappable (click)="toggleMealExpanded()">
+    <div class="dim">
+      <ion-icon [name]="meal.expanded ? 'ios-arrow-up' : 'ios-arrow-down'"></ion-icon>
+    </div>
+    <ion-label>{{ meal.name }}</ion-label>
+  </ion-item>
+  <ion-item *ngFor="let item of items;" tappable (click)="pickItem(item)">
+    <ion-thumbnail>
+      <img [src]="'assets/nutrition/'+item.name+'.png'"/>
+    </ion-thumbnail>
+    <ion-label class="unselected" *ngIf="!item.selectedNutrition">{{ item.name }}</ion-label>
+    <ion-label *ngIf="item.selectedNutrition">{{ item.selectedNutrition.name }}
+      <div *ngIf="showAmounts">({{ item.selectedNutrition.calculatedQuantity }} {{ item.selectedNutrition.unit }}<span *ngIf="item.selectedNutrition.calculatedOunces"> /
+          {{ item.selectedNutrition.calculatedOunces }} oz</span>)
+      </div>
+    </ion-label>
+    <div class="dim selection-icon"
+         [class.blue]="item.selectedNutrition === null"
+         [class.green]="item.selectedNutrition !== null">
+      <ion-icon [name]="item.selectedNutrition === null ? 'add' : 'checkmark'"></ion-icon>
+    </div>
+  </ion-item>
+</section>

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-premium image="assets/photos/live-streaming.jpg"
+               *ngIf="type == 'live-streaming'"
+               continueButtonText="Get Live Streams"
+               (goPremium)="goPremium()"
+               cancelText="I don't want great content…">
+    <p>With over 100 hours of content, you'll always find something new in our growing video library! Check out past
+      live streams, re-watch an informative Q&A session and more!</p>
+  </app-premium>
+  <app-premium image="assets/photos/body-metrics.jpg"
+               *ngIf="type == 'body-metrics'"
+               continueButtonText="Get Body Metrics"
+               (goPremium)="goPremium()"
+               cancelText="I don't want better tracking…">
+    <p>Want better insights into your body modification progress? Start tracking your measurements today and
+      see the changes add up!</p>
+  </app-premium>
+  <app-premium image="assets/photos/messaging.jpg"
+               *ngIf="type == 'messages'"
+               continueButtonText="Get Messaging Access"
+               (goPremium)="goPremium()"
+               cancelText="I don't need any help…">
+    <p>Message your advisor anytime. Send weekly assessment results to your advisor to get personalized feedback to help you
+      reach your goals. Get better results!</p>
+  </app-premium>
+</ion-content>

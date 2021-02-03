@@ -1,0 +1,32 @@
+.weigh-ins {
+  margin: 16px 0;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  > div div {
+    &:nth-child(1) {
+      text-transform: uppercase;
+      font-size: .75em;
+      font-weight: bold;
+    }
+    &:nth-child(2) {
+      font-size: 225%;
+      font-weight: bold;
+      line-height: 1em;
+    }
+  }
+}
+
+.card {
+  width: 100%;
+  background-color: var(--ion-1p-lightest);
+  padding: 16px 24px;
+  margin-top: 12px;
+  .header {
+    font-weight: bold;
+    color: var(--ion-1p-darkest);
+    display: flex;
+    text-transform: uppercase;
+    justify-content: space-between;
+  }
+}

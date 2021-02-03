@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{headerTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item lines='full' (click)="removeSelection()">
+      <ion-label>None</ion-label>
+      <ion-icon *ngIf="checkedNutritionId === null" name="checkmark"></ion-icon>
+    </ion-item>
+    <ion-item lines='full' (click)="selectItem(item)" *ngFor="let item of nutritionItems">
+      <ion-label> {{item.name}}
+        <ion-icon *ngIf="checkedNutritionId === item.name" name="checkmark"></ion-icon>
+      </ion-label>
+      <p *ngIf="showAmounts">
+        <strong *ngIf="item.unit === 'grams'">{{nutritionValueOunces(item.name)}} oz<br/></strong>
+        {{nutritionValue(item.name)}} {{item.unit}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

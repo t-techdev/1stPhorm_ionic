@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Help</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="flexible-container">
+  <div class="flexible-container full-height help-content">
+    <section *ngIf="popupType === 'portion'">
+      <h2>Portion Control</h2>
+      <p>This is a portion control diet plan. For maximum results, at each meal choose one protein (palm sized
+        serving), one carb (fist sized serving), and one veggie (fist size serving). The Palm, Fist, Fist plan is easy
+        and extremely effective!
+      </p>
+      <p>This plan is meant to get you used to eating the correct portions. Focus on eating good foods with the
+        correct portions.</p>
+    </section>
+    <section *ngIf="popupType === 'meal'">
+      <h2>Meal Plan</h2>
+      <p>This is a meal plan. Use this to plan out your meals and get exact measurements for each of your foods on the approved foods list.</p>
+      <p>The portions here are based off of your goal, activity level, sex, and current weight. Any change will cause your macros and then your values .</p>
+      <p>For more information, tap the <ion-icon name="help-circle-outline"></ion-icon> icon on the top of the screen.</p>
+    </section>
+    <div class="mt-auto">
+      <ion-button
+        (click)="close()" color="primary" class="ion-margin"
+        expand="full">Get started
+      </ion-button>
+    </div>
+  </div>
+
+</ion-content>

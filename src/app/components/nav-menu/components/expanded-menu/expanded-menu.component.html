@@ -1,0 +1,253 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Menu
+    </ion-title>
+    <ion-buttons slot="end">
+      <div class="logo-button">
+        <div class="tb-logo"></div>
+      </div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<div class="menu content-sizing overscroll hydrated" *ngIf="transphormer">
+  <ion-item lines="none" class="menu-item avatar" type="button">
+    <ion-avatar slot="start">
+      <img *ngIf="transphormer?.profile_picture_url" [src]="transphormer?.profile_picture_url" alt="Profile Image">
+      <ion-icon *ngIf="!transphormer?.profile_picture_url" size="large" src='/assets/icon/profile.svg'></ion-icon>
+    </ion-avatar>
+    <div class="menu-item-content">
+      <div class="name">
+        {{ transphormer?.display_name }}
+        <small
+          class="weight">Weight: {{ transphormer?.latest_weight | convertWeight }} {{ user.unitTypeLabel('weight') }}</small>
+      </div>
+    </div>
+  </ion-item>
+  <ion-item lines="none" class="menu-item" type="button" (click)="collapeSettingsItem()">
+    <ion-icon slot="start" class="menu-item-icon" src="/assets/icon/settings.svg"></ion-icon>
+    <div class="content">
+      Settings
+    </div>
+    <ion-icon name="arrow-down" slot="end" *ngIf="isCollapsed"></ion-icon>
+    <ion-icon name="arrow-up" slot="end" *ngIf="!isCollapsed"></ion-icon>
+  </ion-item>
+  <div *ngIf="!isCollapsed">
+    <ion-item lines="none" class="menu-item settings-item" type="button" (click)="navigateTo($event, 'info-personal')"
+              appActiveRoute
+              matchRoute="^/info-personal">
+      <ion-icon slot="start" class="menu-item-icon" src="/assets/icon/profile.svg"></ion-icon>
+      <div class="content">
+        My Profile
+      </div>
+      <ion-button slot="end" type="icon" expand="full" fill="clear" class="secondary-menu-item">
+        <ion-icon name="create" mode="md"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item lines="none" class="menu-item settings-item" type="button" (click)="navigateTo($event, 'info-contact')"
+              appActiveRoute
+              matchRoute="^/info-contact">
+      <ion-icon slot="start" class="menu-item-icon" name="mail-open"></ion-icon>
+      <div class="content">
+        Contact Info
+      </div>
+    </ion-item>
+    <ion-item lines="none" class="menu-item settings-item" type="button" (click)="navigateTo($event, 'info-nutrition')"
+              appActiveRoute
+              matchRoute="^/info-nutrition">
+      <ion-icon slot="start" class="menu-item-icon" src="/assets/icon/nutrition.svg"></ion-icon>
+      <div class="content">
+        Nutrition
+      </div>
+    </ion-item>
+    <ion-item lines="none" class="menu-item settings-item" type="button" (click)="navigateTo($event, 'info-workout')"
+              appActiveRoute
+              matchRoute="^/info-workout">
+      <ion-icon slot="start" class="menu-item-icon" src="/assets/icon/workouts.svg"></ion-icon>
+      <div class="content">
+        Workouts
+      </div>
+    </ion-item>
+    <ion-item lines="none" class="menu-item settings-item" type="button" (click)="navigateTo($event, 'reminders')"
+              appActiveRoute
+              matchRoute="^/reminders">
+      <ion-icon slot="start" class="menu-item-icon" src="/assets/icon/reminder.svg"></ion-icon>
+      <div class="content">
+        Reminders
+      </div>
+    </ion-item>
+    <ion-item lines="none" class="menu-item settings-item" type="button" (click)="navigateTo($event, 'notifications')"
+              appActiveRoute
+              matchRoute="^/notifications">
+      <ion-icon slot="start" class="menu-item-icon" src="/assets/icon/notification.svg"></ion-icon>
+      <div class="content">
+        Notifications
+      </div>
+    </ion-item>
+    <ion-item lines="none" class="menu-item settings-item" type="button" (click)="navigateTo($event, 'password-change')"
+              appActiveRoute
+              matchRoute="^/password-change">
+      <ion-icon slot="start" class="menu-item-icon" src="/assets/icon/password.svg"></ion-icon>
+      <div class="content">
+        Change Password
+      </div>
+    </ion-item>
+  </div>
+  <ion-item lines="none" class="menu-item" type="button" (click)="navigateTo($event, 'announcements')" appActiveRoute
+            matchRoute="^/announcements">
+    <ion-icon slot="start" class="menu-item-icon" src="/assets/icon/announcements.svg"></ion-icon>
+    <div class="menu-item-content">
+      Announcements
+    </div>
+    <ion-chip slot="end" color="primary" class="secondary-menu-item">
+      {{ unreadActions.announcementCounts.asObservable() | async }}
+    </ion-chip>
+  </ion-item>
+  <ion-item lines="none" class="menu-item" type="button" (click)="navigateTo($event, 'trainer-requests')" appActiveRoute
+            matchRoute="trainer-requests">
+    <ion-icon src="/assets/icon/profile.svg" slot="start"></ion-icon>
+    <div class="content">
+      My Advisor
+    </div>
+  </ion-item>
+  <ion-item lines="none" class="menu-item" type="button" (click)="navigateTo($event, 'take-assessment')" appActiveRoute
+            matchRoute="take-assessment"
+            *ngIf="transphormer.is_paid_user && user.hasTrainer()">
+    <ion-icon name="checkbox-outline" slot="start"></ion-icon>
+    <div class="content">
+      Take Assessment
+    </div>
+  </ion-item>
+  <ion-item lines="none" class="menu-item" type="button" (click)="navigateTo($event, 'photo-listing')" appActiveRoute
+            matchRoute="photo-listing">
+    <ion-icon slot="start" class="menu-item-icon" src="/assets/icon/image.svg"></ion-icon>
+    <div class="content">
+      My Photos
+    </div>
+    <ion-button slot="end" type="icon" expand="full" fill="clear" class="secondary-menu-item"
+                appActiveRoute matchRoute="camera"
+                *ngIf="platform.is('cordova')"
+                (click)="navigateTo($event, 'camera')">
+      <ion-icon name="add"></ion-icon>
+    </ion-button>
+  </ion-item>
+  <ion-item lines="none" class="menu-item" type="button" (click)="navigateTo($event, 'body-metrics')" appActiveRoute
+            matchRoute="^/body-metrics">
+    <ion-icon slot="start" class="menu-item-icon" src="/assets/icon/body-metric.svg"></ion-icon>
+    <div class="content">
+      Body Metrics
+    </div>
+    <ion-button slot="end" type="icon" expand="full" fill="clear" class="secondary-menu-item"
+                appActiveRoute matchRoute="^/body-metrics/list/weigh-ins"
+                (click)="navigateTo($event, '/body-metrics/list/weigh-ins')">
+      <ion-icon name="add"></ion-icon>
+    </ion-button>
+  </ion-item>
+  <ion-item lines="none" class="menu-item" type="button" (click)="navigateTo($event, 'custom-food')" appActiveRoute
+            matchRoute="custom-food"
+            *ngIf="transphormer | showMyFood">
+    <ion-icon slot="start" class="menu-item-icon" name="basket"></ion-icon>
+    <div class="content">
+      My Foods
+    </div>
+  </ion-item>
+  <ion-item lines="none" class="menu-item" type="button" (click)="goToSubscription($event)" appActiveRoute
+            matchRoute="subscription" *ngIf="!transphormer.is_paid_user">
+    <ion-icon slot="start" class="menu-item-icon" src="/assets/icon/star.svg"></ion-icon>
+    <div class="content">
+      Go Premium
+    </div>
+  </ion-item>
+  <ion-item lines="none" class="menu-item" type="button" (click)="goToStreaming($event)" appActiveRoute
+            matchRoute="live-streaming">
+    <ion-icon slot="start" class="menu-item-icon" src="/assets/icon/video.svg"></ion-icon>
+    <div class="content">
+      Live Streaming
+    </div>
+  </ion-item>
+  <ion-item lines="none" class="menu-item" type="button" (click)="navigateTo($event, '/help')" appActiveRoute
+            matchRoute="^/help">
+    <ion-icon slot="start" class="menu-item-icon" name="help-circle-outline"></ion-icon>
+    <div class="content">
+      Help
+    </div>
+  </ion-item>
+  <ng-container *ngIf="user.isTrainer()">
+    <ion-list-header>Advisor Tools</ion-list-header>
+    <ion-item lines="none" class="menu-item" type="button" (click)="navigateTo($event, 'invite')" appActiveRoute
+              matchRoute="^/invite">
+      <ion-icon slot="start" class="menu-item-icon" name="link"></ion-icon>
+      <div class="content">
+        My Invite Url
+      </div>
+    </ion-item>
+    <ion-item lines="none" class="menu-item" type="button" (click)="navigateTo($event, 'my-transphormers')"
+              appActiveRoute
+              [matchMulti]="transphormersMatchingRoutes">
+      <ion-icon slot="start" class="menu-item-icon" name="people"></ion-icon>
+      <div class="content">
+        My Transphormers
+      </div>
+    </ion-item>
+    <ion-item lines="none" class="menu-item" type="button" (click)="navigateTo($event, 'trainer-messages')"
+              appActiveRoute
+              matchRoute="^/trainer-messages">
+      <ion-icon slot="start" class="menu-item-icon" name="mail"></ion-icon>
+      <div class="content">
+        Message Center
+      </div>
+      <ion-chip slot="end" class="secondary-menu-item" color="primary">
+        {{ (unreadActions.transphormerMessagesCount.asObservable() | async) > 100 ? '99+' : unreadActions.transphormerMessagesCount.asObservable() | async }}
+      </ion-chip>
+    </ion-item>
+    <ion-item lines="none" class="menu-item" type="button" (click)="navigateTo($event, 'trainer-applications')"
+              appActiveRoute matchRoute="^/trainer-applications">
+      <ion-icon slot="start" class="menu-item-icon" name="hand"></ion-icon>
+      <div class="content">
+        Transphormer Requests
+      </div>
+    </ion-item>
+    <ion-item lines="none" class="menu-item" type="button" (click)="navigateTo($event, 'trainer-announcements')"
+              appActiveRoute matchRoute="^/trainer-announcements">
+      <ion-icon slot="start" class="menu-item-icon" name="megaphone"></ion-icon>
+      <div class="content">
+        My Announcements
+      </div>
+      <ion-button slot="end" type="icon" expand="full" fill="clear" class="secondary-menu-item"
+                  appActiveRoute matchRoute="^/create-announcement"
+                  (click)="navigateTo($event, 'create-announcement')">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item lines="none" class="menu-item" type="button" (click)="navigateTo($event, 'trainer-registration')"
+              appActiveRoute matchRoute="^/trainer-registration">
+      <ion-icon slot="start" class="menu-item-icon" name="list-box"></ion-icon>
+      <div class="content">
+        My Advisor Profile
+      </div>
+    </ion-item>
+    <ion-item lines="none" class="menu-item" type="button" (click)="navigateTo($event, 'advisor-assessment-list')"
+              appActiveRoute matchRoute="assessment-list">
+      <ion-icon slot="start" class="menu-item-icon" name="filing"></ion-icon>
+      <div class="content">
+        Assessment Review
+      </div>
+    </ion-item>
+  </ng-container>
+  <ion-list-header>
+    Application
+  </ion-list-header>
+  <ion-item lines="none" class="menu-item" type="button" (click)="navigateTo($event, 'help-support')" appActiveRoute
+            matchRoute="help">
+    <ion-icon slot="start" class="menu-item-icon" src="/assets/icon/help.svg"></ion-icon>
+    <div class="content">
+      Support
+    </div>
+  </ion-item>
+  <ion-item lines="none" class="menu-item" type="button" (click)="logout()">
+    <ion-icon slot="start" class="menu-item-icon" name="exit" mode="md"></ion-icon>
+    <div class="content">
+      Logout
+    </div>
+  </ion-item>
+</div>

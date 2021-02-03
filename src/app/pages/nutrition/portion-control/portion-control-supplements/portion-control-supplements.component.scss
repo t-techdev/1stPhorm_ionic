@@ -1,0 +1,42 @@
+.food-header {
+  .dim {
+    margin-right: var(--default-margin);
+  }
+}
+
+.dim.blue {
+  color: var(--azure);
+  --icon-default-fill: var(--azure);
+  font-size: x-large;
+  ion-icon[name="checkmark"] {
+    color: var(--ion-1p-green);
+  }
+}
+
+ion-thumbnail {
+  width: 48px;
+  height: 48px;
+  margin-right: var(--default-margin);
+  margin-top: calc(var(--default-margin) * 0.4);
+}
+ion-checkbox {
+  margin-right: var(--default-margin);
+}
+
+section {
+  > :last-child:not(.food-header) {
+    padding-bottom: calc(var(--default-margin) * 0.7);
+  }
+}
+
+ion-item {
+  padding: 2px 0;
+  ion-label {
+    --color: var(--ion-1p-text-grey1);
+    font-weight: 600;
+    font-size: 14px;
+    &.food-guide {
+      font-size: 18px;
+    }
+  }
+}

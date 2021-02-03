@@ -1,0 +1,24 @@
+ion-list, .message-listing {
+  padding: 5px 0;
+  flex: 1;
+  overflow-y: scroll;
+  display: flex;
+  margin: 0 5vw;
+  flex-direction: column;
+  background: #e8e8e8;
+}
+
+ion-content {
+  --background: #e8e8e8;
+}
+
+p {
+  font-size: 12pt;
+  white-space: pre-line;
+}
+
+#messaging-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

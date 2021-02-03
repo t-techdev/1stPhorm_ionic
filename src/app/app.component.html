@@ -1,0 +1,4 @@
+<ion-app [class.with-bottom-menu]="bottomMenuVisible">
+  <ion-router-outlet id="content"></ion-router-outlet>
+  <app-bottom-nav [style.display]="bottomMenuVisible ? 'block' : 'none'"></app-bottom-nav>
+</ion-app>

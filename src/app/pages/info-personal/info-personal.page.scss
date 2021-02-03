@@ -1,0 +1,11 @@
+form {
+  padding-bottom: 15px;
+}
+
+ion-segment-button:nth-child(3).segment-button-checked {
+  border-left-width: var(--border-width);
+}
+
+ion-segment-button:nth-child(3) {
+  border-left-width: 0;
+}

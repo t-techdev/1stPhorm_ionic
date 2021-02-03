@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Customize Supplements</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="flexible-container full-height">
+    <div class="ion-padding">
+      <p>Which supplements are you taking?</p>
+    </div>
+    <ion-list>
+      <ion-item lines="none" *ngFor="let category of supplements">
+        <ion-thumbnail>
+          <img [src]="'assets/nutrition/'+category.name+'.png'" onError="style='display:none'" />
+        </ion-thumbnail>
+        <ion-label>{{ category.name }}</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="category.use"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <div class="ion-padding mt-auto">
+      <ion-button expand="full" (click)="updateSupplements()">Save</ion-button>
+    </div>
+  </div>
+</ion-content>

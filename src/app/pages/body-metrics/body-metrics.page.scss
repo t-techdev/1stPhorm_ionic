@@ -1,0 +1,86 @@
+ion-content {
+  --background: #FDFDFD;
+}
+
+.metric-info {
+  .metric-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      ion-button {
+        --padding-start: 0;
+        --padding-end: 0;
+        margin-left: 10px;
+      }
+    }
+
+    .actions {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--azure);
+      --icon-default-fill: var(--azure);
+    }
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+.metric-item {
+  min-height: 72px;
+  border-radius: 4px;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.07);
+  border: solid 1px var(--ice-blue);
+  background-color: #ffffff;
+  padding: 10px 0;
+  margin-bottom: 10px;
+
+  ion-icon {
+    font-size: 40px;
+    color: var(--icon-default-outer-fill);
+
+    &.premium {
+      --icon-default-fill: var(--azure);
+      --icon-default-outer-fill: var(--azure);
+    }
+  }
+
+  .macro-content {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    padding: 3px;
+    justify-content: space-evenly;
+    font-size: 14px;
+
+    .logged-value {
+      font-weight: 600;
+      font-size: 18px;
+
+      .logged-date {
+        font-weight: normal;
+        font-size: 12px;
+      }
+    }
+  }
+
+  ion-button {
+    height: 100%;
+  }
+}
+
+
+ion-list-header {
+  --background: rgba(0, 0, 0, 0);
+  color: black;
+  text-transform: initial;
+  font-size: 16px;
+  --default-margin: 0;
+}

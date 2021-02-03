@@ -1,0 +1,42 @@
+section {
+  display: flex;
+  flex-direction: row;
+  background: var(--background, rgba(0, 0, 0, .1));
+  flex-wrap: nowrap;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.07);
+  padding: var(--ion-padding, 16px);
+  margin-bottom: var(--ion-padding, 16px);
+  align-items: flex-start;
+  > ion-icon {
+    color: var(--azure);
+    width: 50px;
+    height: 50px;
+  }
+  .section_content {
+    padding-left: calc(var(--ion-padding, 16px) * .75);
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  div.title {
+    font-size: calc(var(--app-paragraph-size)*1.1);
+    font-weight: 600;
+    color: var(--text-gray-1);
+    flex: 1;
+  }
+  p {
+    width: 100%;
+    font-size: var(--text-size-small, 10pt);
+    color: var(--brownish-grey);
+    margin: calc(var(--ion-padding, 16px) / 2) 0 0 0;
+  }
+  .premium {
+    color: var(--azure);
+    --default-fill-color: var(--azure);
+    margin: 0 -16px;
+    width: 64px;
+    height: 32px;
+  }
+}

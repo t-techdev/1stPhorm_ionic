@@ -1,0 +1,50 @@
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .weekday {
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+        border: 1px solid var(--very-light-blue);
+        border-radius: 5px;
+        height: 40px;
+        margin: 1px;
+        width: 15%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &.sel {
+            background: var(--azure);
+            border-color: var(--azure);
+            color: white;
+        }
+        &.disable {
+            background: var(--ion-1p-light);
+            color: var(--ion-color-text-gray);
+        }
+    }
+}
+
+.weeks {   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    ion-button {
+        color: var(--ion-color-light-gray-blue);
+        font-size: large;
+    }
+    > span {
+        font-weight: bold;
+    }
+}
+.date {
+    text-align: center;
+    padding: 16px;
+    font-size: 14px;
+}
+
+.date {
+    font-weight: 600;
+}

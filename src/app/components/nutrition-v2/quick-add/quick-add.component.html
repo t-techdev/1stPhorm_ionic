@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Quick Add</ion-title>
+    <ion-buttons slot="end" tappable (click)="closeModal()">
+      <ion-icon mode="md" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <form (ngSubmit)="save()" [formGroup]="form" class="flexible-container full-height">
+    <div class="global-input">
+      <ion-label>Calories</ion-label>
+      <ion-input type="number" formControlName="calories" #inputCalories></ion-input>
+    </div>
+    <div class="global-input">
+      <ion-label>Protein (g)</ion-label>
+      <ion-input type="number" formControlName="protein"></ion-input>
+    </div>
+    <div class="global-input">
+      <ion-label>Carbs (g)</ion-label>
+      <ion-input type="number" formControlName="carbs"></ion-input>
+    </div>
+    <div class="global-input">
+      <ion-label>Fats (g)</ion-label>
+      <ion-input type="number" formControlName="fats"></ion-input>
+    </div>
+    <div class="global-input">
+      <ion-label>Fiber (g)</ion-label>
+      <ion-input type="number" formControlName="fiber"></ion-input>
+    </div>
+    <div class="mt-auto">
+      <ion-button type="submit" expand="full" [disabled]="form.invalid">Save</ion-button>
+    </div>
+  </form>
+</ion-content>

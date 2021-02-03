@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end" (click)="mealInfo()">
+      <ion-icon color="light" name="help-circle-outline" size="large"></ion-icon>
+    </ion-buttons>
+    <ion-title>My Nutrition</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="divider">
+    <app-calendar [minDate]="minDate" [format]="'dddd, M/D'" (dateChange)="onDateChange($event)"></app-calendar>
+  </div>
+
+  <div class="divider">
+    <app-portion-control-macros [transphormer]="transphormer"></app-portion-control-macros>
+  </div>
+
+  <app-portion-control [showAmounts]="shouldShowAmounts"
+                       [activeDate]="activeDate"
+                       (pickedItem)="pickItem($event)">
+  </app-portion-control>
+
+</ion-content>

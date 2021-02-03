@@ -1,0 +1,17 @@
+<div class="transphormer-profile-picture">
+    <div class="avatar-wrapper">
+        <ion-avatar class="avatar" (click)="pickImageSourceTypeForPhotoUpload()">
+            <ion-icon class="default-profile-icon" name="camera"
+                *ngIf="!profileImageUrl"></ion-icon>
+            <img [src]="profileImageUrl" *ngIf="profileImageUrl">
+        </ion-avatar>
+    </div>
+    <div class="loading-panel" *ngIf="this.isLoading === true">
+        <ion-card>
+            <ion-card-content>
+                <ion-progress-bar type="indeterminate"></ion-progress-bar>
+                <p>Uploading photo...</p>
+            </ion-card-content>
+        </ion-card>
+    </div>
+</div>

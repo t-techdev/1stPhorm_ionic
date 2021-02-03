@@ -1,0 +1,12 @@
+<section class="card detail-section" *ngIf="promo">
+  <div class="image-container">
+    <img src="/assets/photos/cta-1.jpg"/>
+  </div>
+  <p class="semibold">We added dozens of new premium features to help you reach your health and fitness goals in 2020!</p>
+  <ul class="premium-list">
+    <li>
+      {{ promo.description }}
+    </li>
+  </ul>
+  <ion-button (click)="subscribe()" expand="full">Get Started</ion-button>
+</section>

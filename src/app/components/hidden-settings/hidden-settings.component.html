@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Hidden Settings</ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>Feature Flags</ion-list-header>
+    <ion-item class="ion-text-wrap">
+      <div>
+        <ion-label>Nutrition</ion-label>
+        <span class="description">Show nutrition new feature.</span>
+      </div>
+      <ion-toggle slot="end" [checked]="flags['feature.nutrition'] || false" (ionChange)="toggleFlag('feature.nutrition')"></ion-toggle>
+    </ion-item>
+    <ion-item class="ion-text-wrap">
+      <div>
+        <ion-label>Messaging</ion-label>
+        <span class="description">Show media in messages.</span>
+      </div>
+      <ion-toggle slot="end" [checked]="flags['feature.media_messaging'] || false" (ionChange)="toggleFlag('feature.media_messaging')"></ion-toggle>
+    </ion-item>
+    <ion-list-header>Special stuff</ion-list-header>
+
+    <ion-button (click)="goPremium()" class="ion-padding" color="secondary" expand="full">Go Premium</ion-button>
+    <ion-button (click)="expirePremium()" class="ion-padding" color="secondary" expand="full">Expire</ion-button>
+
+    <ion-button (click)="resetStore()" class="ion-padding" color="secondary" expand="full">Reset Store {{ remaining }}</ion-button>
+    <ion-button (click)="close()" class="ion-padding" color="primary" expand="full">Close</ion-button>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Notifications</ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo" #logo></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <form [formGroup]='form' (ngSubmit)="updateAccountSetting()">
+    <ion-list>
+      <ion-item>
+        <div>
+          <ion-label>New Chat Messages</ion-label>
+          <span class="description">Get notification of new chat messages from your Transphormation Advisor.</span>
+        </div>
+        <ion-toggle slot="end" formControlName="receive_email"></ion-toggle>
+      </ion-item>
+      <ion-item class="ion-text-wrap">
+        <div>
+          <ion-label>Announcements</ion-label>
+          <span class="description">Get notified of new announcements from your Transphormation Advisor.</span>
+        </div>
+        <ion-toggle slot="end" formControlName="receive_notification"></ion-toggle>
+      </ion-item>
+      <ion-item class="ion-text-wrap">
+        <div>
+          <ion-label>Live streams</ion-label>
+          <span class="description">Get notifications for Livestreams.</span>
+        </div>
+        <ion-toggle slot="end" formControlName="receive_livestream_notification"></ion-toggle>
+      </ion-item>
+      <div class="global-input ion-padding padding">
+        <ion-button type="submit" color="primary" expand="full">Update</ion-button>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

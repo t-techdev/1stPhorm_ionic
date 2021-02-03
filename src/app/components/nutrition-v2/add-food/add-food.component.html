@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar *ngIf="!showFoodManagement && !showCustomFoodManagement">
+    <ion-title>Add Food</ion-title>
+    <ion-buttons slot="end" tappable (click)="closeModal()">
+      <ion-icon mode="md" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="showFoodManagement || showCustomFoodManagement">
+    <ion-title *ngIf="!showFoodManagement">Add Food</ion-title>
+    <ion-title *ngIf="showFoodManagement">Create Food</ion-title>
+    <ion-buttons slot="end" tappable (click)="backFood()">
+      <ion-icon mode="md" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <section class="main_section" [ngStyle]="{'display': !showFoodManagement && !showCustomFoodManagement ? 'block': 'none'}">
+    <app-search-food
+      (searchContentChange)="searchContentChange($event)"
+      (addMealTemplate)="addMealTemplate($event)"
+      (openCustomFood)="openCustomFood($event)"
+      (openCommonFood)="openCommonFood($event)"
+      (openBrandedFood)="openBrandedFood($event)"
+      (scanBarcode)="scanBarcode()"
+      (createFood)="showFoodManagement = true">
+    </app-search-food>
+
+        <div class="get-started"
+             *ngIf="!hasSearchResults && (recentItems.length === 0 && aroundThisTimeItems.length === 0)">
+      <h6 class="title">Get Started</h6>
+      <span>Search our database of foods or add your own by clicking the button above</span>
+    </div>
+
+    <!--around this time and recent result-->
+    <div class="other-listing" *ngIf="!searchValue && !hasSearchResults && (recentItems.length > 0 || aroundThisTimeItems.length > 0)">
+      <app-around-this-time
+          [aroundThisTimeItems]="aroundThisTimeItems"
+        (openRecentFood)="openRecentFood($event)"
+        (addMealTemplate)="addMealTemplate($event)">
+      </app-around-this-time>
+
+      <app-recent-food
+        [recentItems]="recentItems"
+        (openRecentFood)="openRecentFood($event)">
+      </app-recent-food>
+    </div>
+  </section>
+
+  <!-- edit food section -->
+  <section class="edit-food" *ngIf="showFoodManagement">
+    <app-custom-food
+      (cancel)="showFoodManagement = false"
+      (foodItemCreated)="updateMealContent($event)"
+      (mealIndexChanged)="mealIndex = $event"
+      [mealIndex]="mealIndex"
+      [showMealSelect]="!customFoodTemplate"
+      [isConsumable]="!customFoodTemplate">
+    </app-custom-food>
+  </section>
+
+  <section class="edit-food" *ngIf="showCustomFoodManagement">
+    <app-custom-food
+      (cancel)="showCustomFoodManagement = false"
+      (foodItemCreated)="updateMealContent($event)"
+      [isCustom]="false"
+      [foodItem]="foodItem"
+      [defaultServingSizes]="foodItem.alt_servings"
+      [originalServingUnit]="foodItem.serving_size.unit"
+      [showServing]="false"
+      [isTemplateFood]="foodItem.is_custom_food_template || foodItem.is_custom"
+      (mealIndexChanged)="mealIndex = $event"
+      [mealIndex]="mealIndex"
+      [showMealSelect]="false">
+    </app-custom-food>
+  </section>
+
+</ion-content>

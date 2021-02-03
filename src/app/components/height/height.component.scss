@@ -1,0 +1,17 @@
+:host-context(.global-input) {
+  div {
+    margin-top: calc(var(--default-margin) / 2);
+  }
+}
+
+div {
+  position: relative;
+}
+
+.input-container {
+  position: absolute;
+  top: -10px;
+  width: 100%;
+  height: calc(100% + 20px);;
+  z-index: 10;
+}

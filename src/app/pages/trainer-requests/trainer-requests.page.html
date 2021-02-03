@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Advisor</ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <app-trainer-request
+    *ngIf="trainer === null"
+    [previousTrainerEmail]="previousTrainer$ | async"
+    (advisorSelect)="advisorSelected($event)">
+  </app-trainer-request>
+
+  <app-trainer-profile
+    *ngIf="trainer"
+    [user]="user"
+    [advisor]="trainer"
+    (drop)="dropTrainer()">
+  </app-trainer-profile>
+</ion-content>

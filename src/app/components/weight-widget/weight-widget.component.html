@@ -1,0 +1,34 @@
+<section class="card" *ngIf="transphormer">
+  <div class="loading" *ngIf="!weights">
+    <ion-spinner name="dots"></ion-spinner>
+  </div>
+  <div *ngIf="weights && startWeight">
+    <div class="header">
+      <div>Weigh-ins</div>
+      <div class="dim">As of {{ currentWeight ? currentWeight.nice_logged_date : 'Now' }}</div>
+    </div>
+    <div class="weigh-ins">
+      <div>
+        <div>start</div>
+        <div>{{ startWeight | convertWeight: 0 }}</div>
+      </div>
+      <div>
+        <div>current</div>
+        <div *ngIf="currentWeight">{{ currentWeight | convertWeight: 0 }}</div>
+        <div class="dim" *ngIf="!currentWeight">N/A</div>
+      </div>
+      <div>
+        <div>target</div>
+        <div *ngIf="transphormer.goal_weight">{{ transphormer.goal_weight_units | convertWeight: 0 }}</div>
+        <div class="dim" *ngIf="!transphormer.goal_weight">N/A</div>
+      </div>
+    </div>
+  </div>
+  <ion-button size="large"
+              (click)="goToBodyMetrics()"
+              color="primary"
+              expand="full"
+              fill="outline">
+    + Add Weigh-in
+  </ion-button>
+</section>

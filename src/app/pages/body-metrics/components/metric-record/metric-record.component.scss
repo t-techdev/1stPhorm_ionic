@@ -1,0 +1,23 @@
+.metric-record {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+
+  &.border-bottom {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .metric-value {
+    font-size: 16px;
+    font-weight: 600;
+    width: 150px;
+    display: flex;
+    ion-icon {
+      padding-left: calc(var(--default-margin) * .5);
+    }
+  }
+
+  .metric-date {
+    width: 100%;
+    text-align: right;
+  }
+}

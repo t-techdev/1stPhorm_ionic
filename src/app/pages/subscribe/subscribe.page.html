@@ -1,0 +1,141 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Go Premium</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section *ngIf="showExtra" class="onboarding-suggestions ion-margin ion-padding">
+    <div class="premium-icon">
+      <ion-icon src="/assets/icon/premium.svg"></ion-icon>
+    </div>
+    <div class="message">Based on your answers and goals, we recommend upgrading to Premium so you have access to the
+      type of plan you indicated that you want, and also the resources to get you the best results.
+    </div>
+  </section>
+
+  <section class="image">
+    <img width="100%" height="180px" src="/assets/photos/subscribe/banner.jpg"/>
+  </section>
+
+  <section class="ion-padding ion-text-center">
+    <h4>Choose a Subscription</h4>
+    <h6 *ngIf="!promo" class="semibold">Your first 7 days are FREE!</h6>
+    <h6 *ngIf="promo" class="semibold">{{ promo.description }}</h6>
+    <p *ngIf="promo && promo.extendedDetails">{{ promo.extendedDetails }}</p>
+  </section>
+
+  <section class="ion-margin" #chooser>
+    <div class="picker flexible-container" *ngIf="productFetched">
+      <app-product-block [selected]="selected === 'monthly'"
+                         [product]="monthlyProduct"
+                         (click)="selected = 'monthly'">
+      </app-product-block>
+      <app-product-block [selected]="selected === 'yearly'"
+                         [product]="yearlyProduct"
+                         [bestValue]="true"
+                         (click)="selected = 'yearly'">
+      </app-product-block>
+      <app-product-block [selected]="selected === 'quarterly'"
+                         [product]="quarterlyProduct"
+                         (click)="selected = 'quarterly'">
+      </app-product-block>
+    </div>
+    <div class="picker flexible-container ion-justify-content-center" *ngIf="!productFetched">
+      <ion-spinner name="dots"></ion-spinner>
+    </div>
+    <ion-button class="ion-margin-top" *ngIf="!_isPurchasing" [disabled]="!productFetched" (click)="upgrade()" expand="full">Upgrade Now</ion-button>
+    <ion-button class="ion-margin-top" [disabled]="true" *ngIf="_isPurchasing" expand="full"><ion-spinner name="dots"></ion-spinner></ion-button>
+    <div class="fine-print">
+      <span *ngIf="isIos">Payment will be charged to your iTunes Account when the trial period ends.</span>
+      <span *ngIf="isAndroid">Payment will be charged to your Google Play Account when the trial ends.</span>
+      <span>The subscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period.</span>
+      <span>Your account will be charged for renewal within 24-hours prior to the end of the current period.</span>
+      <span>Subscriptions may be managed via Account Settings after purchase.</span>
+      <span><a tappable (click)="openUrl('https://mytransphormationstartstoday.com/privacy-policy/', $event)">Privacy Policy</a> and
+          <a tappable (click)="openUrl('https://mytransphormationstartstoday.com/terms-conditions/', $event)">Terms &amp; Conditions</a>.
+        </span>
+    </div>
+  </section>
+  <section class="detail-section ion-padding">
+    <div class="image-container">
+      <img width="311" height="80" src="/assets/photos/subscribe/live-streams.jpg"/>
+    </div>
+    <h3>Live streams</h3>
+    <p>Get access to Livestreams featuring 1st Phorm Advisors, Registered Dietitians and Pro Trainers. Get the most
+      up-to-date advice and no-nonsense motivation.</p>
+    <ul class="premium-list">
+      <li>
+        <h6>Live Q&A sessions.</h6>
+        Get your questions answered and receive tailored solutions to your personal nutrition and fitness challenges
+      </li>
+      <li>
+        <h6>Contest and performance results</h6>
+        Stay up to date on the contest progress
+      </li>
+    </ul>
+  </section>
+
+  <section class="detail-section ion-padding">
+    <div class="image-container">
+      <img width="311" height="80" src="/assets/photos/subscribe/exclusive-content.jpg"/>
+    </div>
+    <h3>Video Library</h3>
+    <p>With over 100 hours of content, you’ll always find something new in our growing video library! Check out past
+      live streams, rewatch an informative Q&A session and more!</p>
+    <ul class="premium-list">
+      <li><h6>PB&J Podcast</h6></li>
+      <li><h6>Live Q&A</h6></li>
+      <li><h6>Interviews</h6></li>
+      <li><h6>Coffee Chats</h6></li>
+    </ul>
+  </section>
+
+  <section class="detail-section ion-padding">
+    <div class="image-container">
+      <img width="311" height="80" src="/assets/photos/subscribe/workouts.jpg"/>
+    </div>
+    <h3>More Workout Options</h3>
+    <p>Premium subscribers get access to EMOMs, Strength Training, Cross Training and At-home workouts!</p>
+    <ul class="premium-list">
+      <li><h6>6 training programs</h6></li>
+      <li><h6>3 training levels</h6></li>
+      <li><h6>Swap-in an at-home workout</h6></li>
+    </ul>
+  </section>
+
+  <section class="detail-section ion-padding">
+    <div class="image-container">
+      <img width="311" height="80" src="/assets/photos/subscribe/nutrition.jpg"/>
+    </div>
+    <h3>Advanced nutrition options</h3>
+    <p>Upgrade to get hyper personalized nutrition recommendations.</p>
+    <ul class="premium-list">
+      <li><h6>Personalized macros</h6></li>
+      <li><h6>Huge food database</h6></li>
+      <li><h6>Water tracking</h6></li>
+      <li><h6>Set up custom macros</h6></li>
+    </ul>
+  </section>
+
+  <section class="detail-section ion-padding">
+    <div class="image-container">
+      <img width="311" height="80" src="/assets/photos/subscribe/advisor.jpg"/>
+    </div>
+    <h3>1-on-1 Advisor support</h3>
+    <p>Go beyond reading group announcements and build a relationship with your advisor. Message your advisor anytime.
+      Send weekly assessment results to your advisor to get personalized feedback to help you reach
+      your goals.</p>
+    <ul class="premium-list">
+      <li><h6>Progress assessments</h6></li>
+      <li><h6>Chat</h6></li>
+      <li><h6>Nutrition support</h6></li>
+      <li><h6>Workout recommendations</h6></li>
+    </ul>
+  </section>
+
+  <ion-button class="ion-margin" (click)="scrollTo(chooser)" expand="full">Try it free for 7 days!</ion-button>
+  <div class="ion-text-center ion-margin-bottom" *ngIf="showExtra">
+    <a tappable class="skip" routerLink="/walkthru" routerDirection="root">Skip for now...</a>
+  </div>
+</ion-content>

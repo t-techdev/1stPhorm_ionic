@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="backToMetrics()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Body Metrics</ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<div class="metric-content ion-padding">
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <h3 class="Title">{{ metricType.name }}</h3>
+  <div class="chart">
+    <app-timeline-filter (afterDate)="fetchMetrics($event)"></app-timeline-filter>
+    <app-line-chart
+        #lineChart
+        [list]="metrics"
+        [chartLabel]="metricType.name"
+        dataKey="metric_value"
+        [labelTransform]="chartLabelMap"
+        [dataTransform]="dataLabelMap"
+        [reverseList]="true"
+        [configs]="{user: user}"
+    ></app-line-chart>
+  </div>
+</div>
+<ion-content>
+  <ion-list>
+    <ng-container *ngFor="let metric of metrics; let isLast = last; let i = index">
+      <app-metric-record [borderBottom]="isLast" [record]="metric"
+                         [previousRecord]="isLast ? null : metrics[i + 1]"
+                         unit="{{ user.unitTypeLabel('length') }}"
+                         (action)="actions(metric)"
+      ></app-metric-record>
+    </ng-container>
+  </ion-list>
+</ion-content>
+<div class="ion-padding">
+  <ion-button expand="full" (click)="addRecord()" *ngIf="canLogNewMetric">
+    Add Today's Metric
+  </ion-button>
+</div>

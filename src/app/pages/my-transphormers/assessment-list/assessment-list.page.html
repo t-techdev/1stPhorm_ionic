@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Assessment Review
+    </ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="reloadFeed($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Swipe down to refresh!"
+      refreshingSpinner="dots" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-segment class="ion-padding" [value]="tabState" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="unreviewed" [checked]="true">
+      <ion-label>Unreviewed
+        <ng-container *ngIf="unreviewedItemsQty"><ion-badge color="secondary">{{ unreviewedItemsQty }}</ion-badge></ng-container>
+      </ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="all">
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="!pageLoaded">
+    <div class="ion-text-center">
+      <ion-spinner name="dots"></ion-spinner>
+    </div>
+  </div>
+
+  <ion-list *ngIf="assessmentsData.length > 0">
+
+    <div *ngIf="pageLoaded && viewUnreviewedItemsOnly && unreviewedItemsQty === 0" class="ion-text-center ion-margin-top">
+      <ion-icon name="information-circle"></ion-icon> You have no unreviewed assessments.
+    </div>
+
+    <ion-item *ngFor="let assessment of visibleAssessments" (click)="openAssessmentDetail(assessment)">
+      <ion-icon size="large" slot="start" [name]="assessment.reviewed ? 'checkbox-outline' : 'square-outline'"
+                [color]="assessment.reviewed ? 'light' : 'secondary'"></ion-icon>
+      <ion-label>
+        <ion-text>{{  assessment.transphormer.display_name | titlecase  }}</ion-text>
+        <p>{{ assessment.created | date:'M/d/yyyy' }}</p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  <div *ngIf="pageLoaded && assessmentsData.length === 0" class="ion-margin-top ion-text-center">
+    <ion-icon name="information-circle"></ion-icon> You have no assessments to review.
+  </div>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreAssessments($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="dots"
+      loadingText="Fetching more Assessments...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

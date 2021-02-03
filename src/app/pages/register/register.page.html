@@ -1,0 +1,73 @@
+<ion-content>
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <div class="global-container">
+    <div class="ion-padding">
+      <app-logo></app-logo>
+      <h3 class="ion-text-center">Sign Up</h3>
+      <div class="description ion-text-center">My Transphormation Starts Today</div>
+      <form [formGroup]="form">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="global-input">
+                <ion-label position="stacked">First Name</ion-label>
+                <ion-input type="text" formControlName="first_name"></ion-input>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="global-input">
+                <ion-label position="stacked">Last Name</ion-label>
+                <ion-input type="text" formControlName="last_name"></ion-input>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="global-input">
+                <ion-label position="stacked">Email</ion-label>
+                <ion-input type="email" formControlName="email"></ion-input>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="global-input">
+                <ion-label position="stacked">Password</ion-label>
+                <ion-input type="password" formControlName="password"></ion-input>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="global-input ion-text-center">
+                <ion-label>By creating an account, you agree to our
+                  <span tappable (click)='terms()'>Terms and Conditions</span>.
+                </ion-label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </div>
+    <div class='ion-padding div_buttons'>
+      <ion-row>
+        <ion-col>
+          <ion-button class="global-margin-top-10" (click)="register()" expand="full" [disabled]="form.invalid">
+            Sign up
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="global-input ion-text-center">
+            <ion-label>Already have an account?
+              <span tappable (click)='signIn()'>Sign In</span>
+            </ion-label>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Food</ion-title>
+    <ion-buttons slot="end" tappable (click)="closeModal()">
+        <ion-icon mode="md" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <section class="full-height ion-padding">
+    <app-custom-food *ngIf="!customFoodTemplate"
+                   [mealIndex]="mealIndex" [isCustom]="foodItem.is_custom" [foodItem]="foodItem"
+                     (cancel)="closeModal()"
+                     (removeFoodItem)="removeFoodItem()"
+                     [isDeletable]="true"
+                     (mealIndexChanged)="mealIndex = $event"
+                     [defaultServingSizes]="foodItem.alt_servings"
+                     [showServing]="isCustom"
+                   [isTemplateFood]="foodItem.is_custom"
+                     (foodItemCreated)="updateFoodItem($event)"></app-custom-food>
+  <app-custom-food *ngIf="customFoodTemplate"
+                  [isCustom]="true"
+                  [showMealSelect]="false"
+                  [isConsumable]="false"
+                  (cancel)="closeModal()"
+                  [foodItem]="foodItem"
+                  (foodItemCreated)="updateCustomFood($event)"
+  ></app-custom-food>
+  </section>
+</ion-content>

@@ -1,0 +1,75 @@
+ion-content {
+  --photo-padding: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 44px);
+}
+
+.plt-android .container {
+  height: calc(100vh - 74px);
+}
+
+.list-header {
+  background-color: var(--ion-color-header);
+  padding: var(--photo-padding);
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.image-set {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--photo-padding);
+
+  .thumbnail {
+    width: calc((100vw - var(--photo-padding) * 4) / 3);
+  }
+}
+
+.older-progress {
+  display: flex;
+  overflow-y: hidden;
+  flex-direction: column;
+
+  .images-listing {
+    overflow-y: scroll;
+  }
+}
+
+.no-photos {
+  padding: 20px;
+  line-height: 22px;
+  font-size: 13pt;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  ul {
+    padding-left: 10px;
+    counter-reset: foo;
+    display: table;
+  }
+  li {
+    list-style: none;
+    counter-increment: foo;
+    display: table-row;
+    line-height: 30px;
+  }
+  li::before {
+    content: counter(foo) ".";
+    display: table-cell;
+    text-align: right;
+    padding-right: .3em;
+  }
+
+  ion-button {
+    margin-top: auto;
+  }
+
+}

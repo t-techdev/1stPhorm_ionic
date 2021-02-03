@@ -1,0 +1,6 @@
+<div>
+  <ion-spinner *ngIf="loading" name="circles"></ion-spinner>
+  <video *ngIf="!loading" controls width="50vw">
+    <source [src]="this.part.src" type="video/mp4">
+  </video>
+</div>

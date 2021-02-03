@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nutrition</ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <ion-list>
+    <form [formGroup]="form" (ngSubmit)="updateProfile()">
+      <div class="global-input ion-padding">
+        <ion-label position="stacked">What are you more likely to do?</ion-label>
+        <ion-select [interfaceOptions]="{header: 'Choose an option'}" formControlName="likely_to_do" placeholder="Please Select">
+          <ion-select-option [value]="NutritionPlan.PortionControl">Portion control</ion-select-option>
+          <ion-select-option [value]="NutritionPlan.MacroMealPlan">Meal plan</ion-select-option>
+          <ion-select-option [value]="NutritionPlan.CalorieMacroCounting">Calorie / Macro counting</ion-select-option>
+        </ion-select>
+      </div>
+      <div class="global-input ion-padding" *ngIf="isMacroCalorieCounting">
+        <ion-label position="stacked">Do you prefer Carbs or Fats?</ion-label>
+        <ion-select formControlName="preference_macro_counting" placeholder="Please Select" [interfaceOptions]="{header: 'Carbs or Fats?'}">
+          <ion-select-option value="Both">Both</ion-select-option>
+          <ion-select-option value="Carbs">Carbs</ion-select-option>
+          <ion-select-option value="Fats">Fat</ion-select-option>
+        </ion-select>
+        <small>This value adjusts daily carbs and fats.</small>
+      </div>
+      <div class="global-input ion-padding" *ngIf="form.get('likely_to_do').value === 'Macro meal plan'">
+        <ion-label position="stacked">How many meals per day are you wanting to eat?</ion-label>
+        <ion-segment mode="ios" formControlName="meals_per_day">
+          <ion-segment-button mode="ios" value="3">
+            <ion-label>3</ion-label>
+          </ion-segment-button>
+          <ion-segment-button mode="ios" value="4">
+            <ion-label>4</ion-label>
+          </ion-segment-button>
+          <ion-segment-button mode="ios" value="5">
+            <ion-label>5</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+        <small>This value does not impact your macros, only portion sizes.</small>
+      </div>
+      <div class="premium-note" *ngIf="is_free_user && form.get('likely_to_do').value === 'Calorie / Macro counting'">
+        <p>The
+          <strong>{{ form.get('likely_to_do').value }}</strong> option is only available to Premium subscribers. You will default
+          to the free option.
+        </p>
+        <ion-button class="premium" fill="solid" color="warning" size="small" shape="round" (click)="goPremium()">Go Premium &rarr;</ion-button>
+      </div>
+      <div class="global-input ion-padding">
+        <app-macros-bar [transphormer]="transphormer"></app-macros-bar>
+        <ion-button class="ion-margin-top" *ngIf="isMacroCalorieCounting" (click)="openCustomMacro()" expand="full">Customize Macros</ion-button>
+      </div>
+      <div class="premium-note" *ngIf="isMacroCalorieCounting && hasCustomMacros">
+        <p>Your macros are customized. Changing the values below will not affect your macros unless they are reset.</p>
+      </div>
+      <div class="global-input ion-padding">
+        <ion-label position="stacked">I want to...</ion-label>
+        <ion-select formControlName="transphormation_goal" placeholder="Please Select">
+          <ion-select-option *ngFor="let transphormationGoal of transphormationGoals" [value]="transphormationGoal">{{ transphormationGoal }}
+          </ion-select-option>
+        </ion-select>
+        <small>This value impacts your daily macros.</small>
+      </div>
+      <div class="global-input ion-padding">
+        <ion-label position="stacked">What is your daily activity level?</ion-label>
+        <ion-select formControlName="activity_level" placeholder="Please Select">
+          <ion-select-option *ngFor="let activeLevel of activeLevels" [value]="activeLevel">{{ activeLevel }}
+          </ion-select-option>
+        </ion-select>
+        <small>This value impacts your daily macros.</small>
+      </div>
+      <div class="global-input ion-padding padding">
+        <ion-button type="submit" color="primary" expand="full">Update</ion-button>
+      </div>
+    </form>
+  </ion-list>
+</ion-content>

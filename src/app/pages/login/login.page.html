@@ -1,0 +1,57 @@
+<ion-content>
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <div class="global-container">
+    <div class="ion-padding">
+      <app-logo></app-logo>
+      <h3 class="ion-text-center">Sign In</h3>
+      <div class="description ion-text-center">My Transphormation Starts Today</div>
+      <form [formGroup]="form" (ngSubmit)="login()">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="global-input">
+                <ion-label position="stacked">Email</ion-label>
+                <ion-input type="email" inputmode="email" formControlName="email"></ion-input>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="global-input">
+                <ion-label position="stacked">Password</ion-label>
+                <ion-input type="password" formControlName="password"></ion-input>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="global-input ion-text-right">
+                <ion-label>
+                  <span tappable (click)='goToForgotPassword()'>Forgot password?</span>
+                </ion-label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </div>
+    <div class='ion-padding div_buttons'>
+      <ion-row>
+        <ion-col>
+          <ion-button class="global-margin-top-20" expand="full" (click)="login()" [disabled]="form.invalid">Sign In</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="global-input ion-text-center">
+            <ion-label>Don't you have an account?
+              <span tappable (click)='goToRegister()'>Sign Up</span>
+            </ion-label>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

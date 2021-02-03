@@ -1,0 +1,86 @@
+<form class="full-height" [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="flexible-container full-height">
+    <ion-grid class="fixed-padding">
+      <ion-row>
+        <ion-col>
+          <h4 class="bold">Basic Info</h4>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="global-input">
+            <ion-label>Sex</ion-label>
+            <ion-segment mode="ios" [value]="form.get('sex').value" (ionChange)="sexChanged($event)">
+              <ion-segment-button mode="ios" [value]="SexValues.Male">
+                <ion-label>Male</ion-label>
+              </ion-segment-button>
+              <ion-segment-button mode="ios" [value]="SexValues.Female">
+                <ion-label>Female</ion-label>
+              </ion-segment-button>
+            </ion-segment>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="global-input">
+            <ion-label>Date of Birth</ion-label>
+            <ion-datetime display-format="MM/DD/YYYY" formControlName="date_of_birth"></ion-datetime>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="global-input">
+            <ion-label>Measurement units</ion-label>
+            <ion-segment mode="ios" [value]="unitType" (ionChange)="unitChanged($event)">
+              <ion-segment-button mode="ios" [value]="UnitTypes.Imperial">
+                <ion-label>in/lb</ion-label>
+              </ion-segment-button>
+              <ion-segment-button mode="ios" [value]="UnitTypes.Metric">
+                <ion-label>cm/kg</ion-label>
+              </ion-segment-button>
+            </ion-segment>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="global-input">
+            <ion-label>Height, {{ unitType === UnitTypes.Imperial ? 'ft/in' : 'cm' }}</ion-label>
+            <app-height *ngIf="unitType === UnitTypes.Imperial"
+                        [height]="form.get('height').value"
+                        (heightChange)="form.get('height').setValue($event)">
+            </app-height>
+            <ion-input *ngIf="unitType === UnitTypes.Metric"
+                       formControlName="height" type="number"></ion-input>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="global-input">
+            <ion-label>Current Weight, {{ unitType === UnitTypes.Imperial ? 'lbs' : 'kg' }}
+            </ion-label>
+            <ion-input formControlName="weight" type="number"></ion-input>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="global-input">
+            <ion-label>Goal Weight, {{ unitType === UnitTypes.Imperial ? 'lbs' : 'kg' }}
+            </ion-label>
+            <ion-input formControlName="goal_weight" type="number"></ion-input>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div class="mt-auto">
+      <ion-button type="submit"
+                  class="ion-margin-vertical"
+                  [disabled]="form.invalid"
+                  expand="full">
+        Next
+      </ion-button>
+    </div>
+  </div>
+</form>

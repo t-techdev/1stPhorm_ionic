@@ -1,0 +1,68 @@
+:host {
+  --inactive-background-color: var(--ice-blue);
+  --active-background-color: var(--azure);
+  --completed-background-color: var(--pale-sky-blue);
+}
+
+.steps-container {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row;
+  font-weight: 600;
+
+  .steps {
+    display: flex;
+    flex-flow: row;
+    padding: 10px 25px 10px 5px;
+
+    &.mini-mode {
+      width: 100%;
+    }
+
+    .step {
+      position: relative;
+      &.completed {
+        > .bar {
+          background: var(--completed-background-color);
+        }
+      }
+      &.active {
+        > .bar {
+          background: var(--active-background-color);
+        }
+      }
+      > .bar {
+        background: var(--inactive-background-color);
+        height: var(--counter-height, 3px);
+        width: var(--step-width, 24px);
+        margin: 0 var(--step-spacing, 8px) 0 0;
+      }
+      .target {
+        position: absolute;
+        left: calc(var(--step-spacing, 8px) / -2);
+        top: calc(var(--target-padding, 15px) * -1);
+        height: calc(var(--target-padding, 15px) * 2 + var(--counter-height, 3px));
+        width: calc(var(--step-width, 24px) + var(--step-spacing, 8px));
+      }
+    }
+  }
+
+  .step-info {
+    >div:first-child {
+      padding: 0 6px;
+    }
+    color: var(--grey-mid);
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+
+  .step-separator {
+    padding: 0 1px;
+  }
+
+}
+

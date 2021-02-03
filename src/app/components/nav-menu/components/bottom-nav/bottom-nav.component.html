@@ -1,0 +1,44 @@
+<div class="nav-container">
+  <div class="nav-item ion-tappable" appActiveRoute matchRoute="dashboard" (click)="navigateTo('dashboard')">
+    <div class="icon">
+      <ion-icon src="/assets/icon/dashboard.svg" appActiveRoute matchRoute="dashboard"></ion-icon>
+    </div>
+    <div class="nav-name">Dashboard</div>
+  </div>
+  <div class="nav-item ion-tappable" appActiveRoute matchRoute="^/workout" (click)="navigateTo('workouts')">
+    <div class="icon">
+      <ion-icon src="/assets/icon/workouts.svg"></ion-icon>
+    </div>
+    <div class="nav-name">Workout</div>
+  </div>
+  <div class="nav-item ion-tappable" appActiveRoute matchRoute="^/(nutrition|macro)" (click)="navigateTo('macro')"
+       *ngIf="user.isPaidUser() && (user.user | calorieCounting); else nutritionFreeUser">
+    <div class="icon">
+      <ion-icon src="/assets/icon/nutrition.svg"></ion-icon>
+    </div>
+    <div class="nav-name">My Nutrition</div>
+  </div>
+  <ng-template #nutritionFreeUser>
+    <div class="nav-item ion-tappable" appActiveRoute matchRoute="^/(nutrition|macro)" (click)="navigateTo('nutrition')">
+      <div class="icon">
+        <ion-icon src="/assets/icon/nutrition.svg"></ion-icon>
+      </div>
+      <div class="nav-name">My Nutrition</div>
+    </div>
+  </ng-template>
+  <div class="nav-item ion-tappable" appActiveRoute matchRoute="^/messages" (click)="goToMessages()">
+    <div class="icon">
+      <ion-icon src="/assets/icon/inbox.svg"></ion-icon>
+    </div>
+    <div class="nav-name">Chat</div>
+    <ion-chip color="primary" *ngIf="(unreadActions.messagesCount.asObservable() | async) > 0">
+      {{ unreadActions.messagesCount.asObservable() | async }}
+    </ion-chip>
+  </div>
+  <div class="nav-item ion-tappable" appActiveRoute [matchMulti]="moreActiveUrls" (click)="openMoreMenu()">
+    <div class="icon">
+      <ion-icon src="/assets/icon/more-horizontal.svg"></ion-icon>
+    </div>
+    <div class="nav-name">More</div>
+  </div>
+</div>

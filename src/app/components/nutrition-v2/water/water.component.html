@@ -1,0 +1,18 @@
+<ng-container>
+  <div class='flex'>
+    <div>
+      Water -
+      <span>{{currentValue}}/{{totalValue}} oz</span>
+    </div>
+    <div class="add-water">
+      <ion-button expand="full" fill="clear" (click)="addWater()">
+        <ion-icon name="add"></ion-icon> Add Water
+      </ion-button>
+    </div>
+  </div>
+  <div class="progress-bar" [ngClass]="{ full: full }">
+    <div class="goal-bar feature">
+      <div class="progress" [ngStyle]="{'width': percentage + '%'}"></div>
+    </div>
+  </div>
+</ng-container>

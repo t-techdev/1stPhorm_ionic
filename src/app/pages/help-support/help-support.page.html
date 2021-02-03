@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Help & Support</ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>Common Questions</ion-list-header>
+    <ion-item lines="none">
+      Need help managing your subscription? Have questions about functionality or app features?<br/>
+      Your question has probably already been answered! Check the Help Guide for more information.
+    </ion-item>
+    <div class="ion-padding">
+      <ion-button type="button" color="primary" size="large" fill="outline" expand="full" (click)="viewSupportPage()">
+        View Help Guide
+      </ion-button>
+    </div>
+    <ion-list-header>Manage Subscription</ion-list-header>
+    <div class="ion-padding">
+      <ion-button type="button" color="secondary" size="large" fill="outline" expand="full"
+                  (click)="manageSubscriptions()">
+        Manage Subscriptions
+      </ion-button>
+    </div>
+    <ion-item lines="none" class="ion-text-center"><p class="small-warn">Please note that we cannot cancel or manage
+      Premium Subscriptions. Please refer to the help guide for more information.</p></ion-item>
+    <ion-list-header>Contact Support</ion-list-header>
+    <ion-item lines="none">
+      If you are still having problems after reviewing the above, or if you have other feedback, please use the link
+      below to email us.
+    </ion-item>
+    <div class="ion-padding">
+      <ion-button type="button" color="tertiary" fill="outline" expand="full" (click)="contactSupport()">Contact Support
+      </ion-button>
+    </div>
+    <ion-list-header>App Information</ion-list-header>
+    <ion-item>
+      <ion-label>App version</ion-label>
+      <ion-note slot="end">{{ appVersion || 'n/a' }}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>Build version</ion-label>
+      <ion-note slot="end">{{ buildVersion || 'n/a' }}</ion-note>
+    </ion-item>
+    <ion-list-header>Advanced</ion-list-header>
+    <div class="ion-padding global-input global-margin-top-25" *ngIf="platform.is('cordova')">
+      <ion-button type="button" color="secondary" fill="outline" expand="full" (click)="checkPremiumSubscription()">
+        Refresh
+        Premium Status
+      </ion-button>
+    </div>
+    <div class="ion-padding">
+      <ion-button type="button" color="secondary" fill="outline" expand="full" (click)="clearCaches()">Clear Caches
+      </ion-button>
+    </div>
+  </ion-list>
+</ion-content>

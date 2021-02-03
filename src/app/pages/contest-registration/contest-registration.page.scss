@@ -1,0 +1,39 @@
+.flex_content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+}
+
+p {
+  font-size: 12pt;
+}
+
+img {
+  margin-top: 5vh;
+  width: auto;
+  height: 25vh;
+}
+
+.bottom-content {
+    margin-top: auto;
+}
+
+ul {
+  padding-left: 2em;
+    li {
+        list-style: none;
+        position: relative;
+        margin-bottom: var(--default-margin);
+    }
+    li:before {
+        content: '';
+        position: absolute;
+        width: .35em;
+        height: .35em;
+        border: 1px solid var(--ion-color-brand);
+        border-radius: 100%;
+        top: .5em;
+        left: -1em;
+    }
+}

@@ -1,0 +1,11 @@
+<section>
+  <ion-icon *ngIf="option.icon && option.icon.startsWith('icon')" slot="start" src="/assets/onboarding/{{option.icon}}.svg" (error)="hideSvg = true"></ion-icon>
+  <ion-icon *ngIf="option.icon && !option.icon.startsWith('icon')" slot="start" [name]="option.icon" (error)="hideIcon = true"></ion-icon>
+  <div class='section_content'>
+    <div class="title">{{ option.title }}</div>
+    <ion-button class="premium" (click)="premium($event)" *ngIf="option.isPremium" fill="clear" color="primary">
+      <ion-icon src="/assets/icon/premium.svg" class="premium"></ion-icon>
+    </ion-button>
+    <p *ngIf="option.description" [innerHTML]="option.description"></p>
+  </div>
+</section>

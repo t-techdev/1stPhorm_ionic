@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/trainer-messages" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Messages w/ {{ name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="viewTransphormer()">
+        <ion-icon slot="icon-only" color="primary" name="search" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<div id="messaging-page">
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <ion-content #messageContent class="message-listing">
+    <app-message-list [senderId]="this.user.id"
+                      [messages]="messages">
+    </app-message-list>
+  </ion-content>
+
+  <div class='position-relative'>
+    <div class="spinner-container" *ngIf="spinner_send_message">
+      <ion-spinner></ion-spinner>
+    </div>
+    <app-message-entry (sendMessage)='sendMessage($event)'
+                       (sendAttachment)="sendAttachment($event)"
+                       [allowMedia]="(feature | async)"
+                       [isUploading]="isUploading"
+                       [uploadProgress]="uploadProgress"
+                       [uploadCount]="uploadCount"
+                       (scrollBottom)='scrollBottom()'
+                       >
+    </app-message-entry>
+  </div>
+</div>

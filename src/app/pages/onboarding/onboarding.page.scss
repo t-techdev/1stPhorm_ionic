@@ -1,0 +1,8 @@
+app-step-counter {
+  padding: var(--default-margin) 0;
+  background: white;
+}
+
+:host {
+  --app-paragraph-size: 12pt;
+}

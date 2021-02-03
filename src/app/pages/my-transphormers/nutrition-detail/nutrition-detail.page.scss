@@ -1,0 +1,121 @@
+.listing {
+  flex: 1;
+  overflow-y: scroll;
+  margin-top: 2em;
+}
+
+.expanded > .data {
+  background: #444;
+  color: white;
+}
+
+.day {
+  .meals {
+    background: #f3f3f3;
+  }
+
+  background: #efefef;
+
+  .meals {
+    .data {
+      padding: .25em 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+
+  .data {
+    padding: .5em 0;
+    display: flex;
+    flex-direction: row;
+    font-weight: 600;
+    font-size: 14px;
+
+    .message {
+      width: 80%;
+      font-weight: 100;
+      color: #aaa;
+    }
+
+    div {
+      width: 20%;
+      text-align: center;
+      margin: 4px 0;
+    }
+  }
+}
+
+.header {
+  display: flex;
+  height: 2em;
+  z-index: 1;
+
+  div {
+    background: var(--ion-1p-blue-darker);
+    color: white;
+    width: 20%;
+    text-align: center;
+    padding: 4px 0;
+    font-weight: 600;
+    font-size: 14px;
+  }
+}
+
+.feature {
+  .header div,
+  .data div {
+    width: 16.67%;
+  }
+}
+.meal {
+  &:not(:first-child) {
+    border-top: 2px solid var(--light-blue-grey);
+  }
+}
+
+.centered {
+  text-align: center;
+  padding: 4em 1em;
+}
+
+.calories {
+  color: var(--ion-1p-calorie-color);
+}
+
+.carbs {
+  color: var(--ion-1p-carb-color);
+}
+
+.protein {
+  color: var(--ion-1p-protein-color);
+}
+
+.fats {
+  color: var(--ion-1p-fat-color);
+}
+
+.food {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  font-size: 12px;
+
+  .details {
+    width: 80%;
+    display: flex;
+
+    > div {
+      width: 25%;
+      color: var(--greyish-brown);
+      text-align: center;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+    }
+  }
+
+  .meal-number {
+    padding-left: var(--default-margin);
+    text-align: left;
+    flex-grow: 1;
+  }
+}

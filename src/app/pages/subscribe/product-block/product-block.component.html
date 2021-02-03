@@ -1,0 +1,12 @@
+<div class="sub-option ion-padding"
+     tappable
+     [ngClass]="{'selected': selected, 'best-option': bestValue }"
+     (click)="choose()">
+  <aside *ngIf="bestValue">Best Value</aside>
+  <div class="image">
+    <ion-icon src="/assets/icon/premium.svg"></ion-icon>
+  </div>
+  <div class="period">{{ product.term }}</div>
+  <h5 class="price">{{ product.price }}</h5>
+  <div class="monthly">{{ product.monthlyPrice }}/MO</div>
+</div>

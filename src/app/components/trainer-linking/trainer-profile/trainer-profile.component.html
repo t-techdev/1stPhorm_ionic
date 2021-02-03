@@ -1,0 +1,74 @@
+<ion-content class="full-height" *ngIf="advisor">
+  <div class="flexible-container ion-padding">
+    <div class="advisor-image">
+      <img *ngIf="advisor.transphormer?.profile_picture_url"
+               [src]="advisor.transphormer?.profile_picture_url" />
+      <ion-icon *ngIf="!advisor.transphormer?.profile_picture_url"
+                src='/assets/icon/profile.svg'></ion-icon>
+    </div>
+    <h3 class="ion-text-center ion-margin-top">
+      {{ advisor.transphormer.display_name }}
+    </h3>
+  </div>
+  <ion-list>
+    <ion-item *ngIf="advisor.city && advisor.state">
+      <ion-icon class="ion-margin-end" src="assets/icon/distance.svg" slot="start"></ion-icon>
+      <app-label-value-item title="Location">
+        {{ advisor.city }}, {{ advisor.state }} One, Two
+      </app-label-value-item>
+    </ion-item>
+    <ion-item>
+      <ion-icon class="ion-margin-end" src="assets/icon/time.svg" slot="start"></ion-icon>
+      <app-label-value-item title="Years Training">
+        {{ advisor.years_training }}
+      </app-label-value-item>
+    </ion-item>
+    <ion-item>
+      <ion-icon class="ion-margin-end" src="assets/icon/certificate.svg" slot="start"></ion-icon>
+      <app-label-value-item title="Certifications">
+        {{ advisor.certifications }}
+      </app-label-value-item>
+    </ion-item>
+    <ion-button
+      *ngIf="canMessage" (click)="chat()" color="primary" class="ion-margin global-margin-top-20"
+      fill="outline" expand="full">Send Message
+    </ion-button>
+    <ion-list-header>
+      Social Media
+    </ion-list-header>
+    <ion-item *ngIf="advisor.facebook_group" (click)="visitUrl(advisor.facebook_group)">
+      <ion-icon class="ion-margin-end" src="assets/icon/facebook.svg" slot="start"></ion-icon>
+      Facebook Group
+    </ion-item>
+    <ion-item *ngIf="advisor.facebook" (click)="visitFacebook(advisor.facebook)">
+      <ion-icon class="ion-margin-end" src="assets/icon/facebook.svg" slot="start"></ion-icon>
+      {{ advisor.facebook }}
+    </ion-item>
+    <ion-item *ngIf="advisor.instagram" (click)="visitInstagram(advisor.instagram)">
+      <ion-icon class="ion-margin-end" src="assets/icon/insta.svg" slot="start"></ion-icon>
+      {{ advisor.instagram }}
+    </ion-item>
+    <ion-item *ngIf="advisor.linkedin" (click)="visitLinkedIn(advisor.linkedin)">
+      <ion-icon class="ion-margin-end" src="assets/icon/linkedin.svg" slot="start"></ion-icon>
+      {{ advisor.linkedin }}
+    </ion-item>
+    <ion-item *ngIf="advisor.pintrest" (click)="visitPinterest(advisor.pintrest)">
+      <ion-icon class="ion-margin-end" src="assets/icon/pinterest.svg" slot="start"></ion-icon>
+      {{ advisor.pintrest }}
+    </ion-item>
+    <ion-item *ngIf="advisor.twitter" (click)="visitTwitter(advisor.twitter)">
+      <ion-icon class="ion-margin-end" src="assets/icon/twitter.svg" slot="start"></ion-icon>
+      {{ advisor.twitter }}
+    </ion-item>
+    <ion-item *ngIf="advisor.youtube" (click)="visitYoutube(advisor.youtube)">
+      <ion-icon class="ion-margin-end" src="assets/icon/youtube.svg" slot="start"></ion-icon>
+      {{ advisor.youtube }}
+    </ion-item>
+  </ion-list>
+  <div class="mt-auto">
+    <ion-button
+      (click)="dropAdvisor()" color="danger" fill="clear" class="ion-margin"
+      strong="true" expand="full">Drop Advisor...
+    </ion-button>
+  </div>
+</ion-content>

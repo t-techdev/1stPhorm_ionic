@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Transphormation</ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-contest-widget
+    *ngIf="transphormer && challengeDates"
+    [updates]="transphormer.last_two_month_updates"
+    [challengeDates]="challengeDates"
+  ></app-contest-widget>
+
+  <section *appFeatureFlag="'free-at-home'" id="icon-message">
+    <div class="ion-color-success ion-margin container" *ngIf="!transphormer.is_paid_user && !shouldShowMessage">
+      <div class="content">
+        <div class="icon">
+          <ion-icon size="large" name="warning"></ion-icon>
+        </div>
+        <div class="message">
+          <p>In response to the Coronavirus situation, we have temporarily opened up the at-home training program for
+            free
+            users. Stay safe and keep at it!</p>
+        </div>
+      </div>
+      <div class="buttons">
+        <ion-button class="hide-message" fill="clear" (click)="shouldShowMessage = true">Hide</ion-button>
+        <ion-button class="action" fill="clear" (click)="updateWorkout()">Update Profile</ion-button>
+      </div>
+    </div>
+  </section>
+
+  <app-macros-consumed
+    *ngIf="transphormer && transphormerDoingCalorieMacroCounting"
+    [transphormer]="transphormer">
+    <ion-button size="large" (click)="goToNutrition()" color="primary" expand="full">
+      + Add Food
+    </ion-button>
+  </app-macros-consumed>
+
+  <app-macros-bar *ngIf="transphormer && !transphormerDoingCalorieMacroCounting" [transphormer]="transphormer">
+    <ion-button size="large" class="ion-margin-top" (click)="goToNutrition()" color="primary" expand="full">
+      + Add Food
+    </ion-button>
+  </app-macros-bar>
+
+  <app-todays-workout>
+    <ion-button size="large" color="success" expand="full" (click)="goToTrainingProgram()">
+      View Workout
+    </ion-button>
+  </app-todays-workout>
+
+  <app-dashboard-video
+    class="ion-margin-top"
+    [readonly]="!transphormer.is_paid_user"
+    (viewVideo)="videoClick()"
+  ></app-dashboard-video>
+
+  <app-weight-widget
+    [transphormer]="transphormer"></app-weight-widget>
+
+  <section class="padded">
+    <ion-button class="purple" size="large" (click)="goToFacebook()" expand="full" fill="outline">
+      <ion-icon name="logo-facebook"></ion-icon>&nbsp;Join Our Group
+    </ion-button>
+  </section>
+
+</ion-content>

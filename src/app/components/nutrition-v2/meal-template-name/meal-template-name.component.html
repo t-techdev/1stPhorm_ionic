@@ -1,0 +1,25 @@
+<section class="header">
+  <h5>
+    Save As Meal
+    <ion-button fill="clear" type="icon" (click)="close()">
+      <ion-icon name="close" mode="md"></ion-icon>
+    </ion-button>
+  </h5>
+</section>
+<section class="body ion-padding">
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <div class="global-input">
+      <ion-label>Meal Name</ion-label>
+      <ion-input formControlName="name"></ion-input>
+    </div>
+  </form>
+</section>
+<section class="footer ion-padding">
+  <div class="flex mt-auto">
+    <ion-button type="button" expand="full" fill="clear" (click)="close()">Cancel</ion-button>
+    <ion-button type="submit" expand="full" [disabled]="form.invalid" (click)="save()">Save</ion-button>
+  </div>
+</section>

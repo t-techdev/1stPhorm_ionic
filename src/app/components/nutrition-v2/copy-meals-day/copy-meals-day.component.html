@@ -1,0 +1,75 @@
+<ion-content>
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <div class='div_wrapper ion-padding'>
+    <div class="div_header">
+      <div class='title' *ngIf="!singleMeal">Copy Meals To</div>
+      <div class='title' *ngIf="singleMeal">Copy Meal To</div>
+      <div class='dim' tappable (click)="closeModal()">
+        <ion-icon mode="md" name="close"></ion-icon>
+      </div>
+    </div>
+
+    <ng-container *ngIf="macroCounting.calories === 0">
+      <div class="empty-state ">No Meals to be copied.</div>
+    </ng-container>
+
+    <ng-container *ngIf="macroCounting.calories > 0">
+      <!-- <ion-item tappable (click)="isDetail = !isDetail">
+      <ion-label>Meal Details</ion-label>
+      <ion-icon slot='end' name='ios-arrow-down' *ngIf="!isDetail"></ion-icon>
+      <ion-icon slot='end' name='ios-arrow-up' *ngIf="isDetail"></ion-icon>
+    </ion-item>
+    <ng-container *ngIf="isDetail">
+      <div class='meal-list'>
+        <div class='meal-item' *ngFor="let meal of meals">
+          <ng-container *ngIf="meal.food_items.length > 0">
+            <div class='meal-name'>Meal {{meal.meal_count}}</div>
+            <div class='food-list'>
+              <div class='food-item' *ngFor="let food of meal.food_items">
+                <div>{{food.name}} ({{food.amount_consumed.amount}} {{food.amount_consumed.unit}})
+                  <span>
+                    <span class="calories-color">{{food.calories}} Cals</span>, protein: {{food.protein}}, carbs: {{food.carbs}}, fats: {{food.fats}}</span>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class='total'>
+        <div class='meal-name'>Total</div>
+        <div class='food-list ion-padding'>
+          <div class='total-item'>
+            Calories
+            <span class="calories-color">{{ singleMeal? '' : macroCounting.calories }}</span>
+          </div>
+          <div class='total-item'>
+            Protein
+            <span class="protein-color">{{ singleMeal? '' :macroCounting.protein }}</span>
+          </div>
+          <div class='total-item'>
+            Carbs
+            <span class="carbs-color">{{ singleMeal? '' :macroCounting.carbs }}</span>
+          </div>
+          <div class='total-item'>
+            Fats
+            <span class="fat-color">{{ singleMeal? '' :macroCounting.fats }}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container> -->
+      <app-calendar-mini [currentDate]="date" [date]="toDate" (dateChange)="dateChange($event)"></app-calendar-mini>
+      <div class="empty-state desc" *ngIf="!singleMeal">This will copy all the meals of that day to a selected day.</div>
+      <div class="empty-state desc" *ngIf="singleMeal">This will copy a single meal to a selected day.</div>
+      <div class="flex mt-auto">
+        <ion-button [disabled]="equalDate()" fill="clear" (click)="closeModal()">
+          Cancel
+        </ion-button>
+        <ion-button [disabled]="equalDate()" (click)="copy()">
+          Save
+        </ion-button>
+      </div>
+    </ng-container>
+  </div>
+</ion-content>

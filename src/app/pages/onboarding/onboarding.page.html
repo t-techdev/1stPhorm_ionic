@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" type="icon" (click)="this.goToStep(this.currentStep)"
+                  *ngIf="this.currentStep > 1">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Building Your Custom Plan</ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="full-height ion-padding-horizontal flexible-container" *ngIf="currentState !== 'finish'">
+
+    <app-step-counter *ngIf="currentState !== 'finish'"
+                      [totalSteps]="totalSteps"
+                      [completedSteps]="highestCompletedStep"
+                      [currentStep]="currentStep"
+                      (stepTapped)="goToStep($event)">
+    </app-step-counter>
+
+    <app-info-gathering *ngIf="currentState === 'info'"
+                        [values]="personalInfo"
+                        (submitted)="savePersonalInfo($event)">
+
+    </app-info-gathering>
+    <app-personal-contact *ngIf="currentState === 'contact'"
+                        (submitted)="saveContactInfo($event)">
+
+    </app-personal-contact>
+
+    <div *ngIf="!['start', 'info', 'contact'].includes(currentState)"
+         class="flexible-container">
+      <app-question [question]="activeQuestion"
+                    (optionSelected)="this.next($event)">
+      </app-question>
+    </div>
+  </div>
+
+  <app-onboarding-intro *ngIf="currentState === 'finish'"
+                        imageSrc="/assets/photos/female/advisor-1.jpg"
+                        nextButtonText="Start my Transphormation"
+                        (started)="startCompletion()"
+                        [complete]="completed"
+                        (next)="complete()">
+    <p>That wasn't so bad, was it? Let's get to work!</p>
+  </app-onboarding-intro>
+
+</ion-content>

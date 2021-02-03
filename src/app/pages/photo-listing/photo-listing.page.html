@@ -1,0 +1,70 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button (click)="photoListingAction()">
+                <ion-icon slot="icon-only" name="more"></ion-icon>
+            </ion-button>
+            <div class="tb-logo"></div>
+        </ion-buttons>
+        <ion-title>My Photos</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+</div>
+
+<ion-content scrollY="false" *ngIf="allImages.length !== 0">
+    <div class="container">
+        <div class="latest-progress" *ngIf="latestImage">
+            <h6 class="list-header">Latest Progress</h6>
+            <div class="image-set">
+                <div class="thumbnail" (click)="openZoomImg(latestImage.picture_front)">
+                    <img [src]="latestImage.picture_front" alt="">
+                </div>
+                <div class="thumbnail" (click)="openZoomImg(latestImage.picture_back)">
+                    <img [src]="latestImage.picture_back" alt="">
+                </div>
+                <div class="thumbnail" (click)="openZoomImg(latestImage.picture_side)">
+                    <img [src]="latestImage.picture_side" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="older-progress">
+            <h6 class="list-header">Past Progress</h6>
+            <div class="images-listing">
+                <div class="older-progress-block" *ngFor="let image of images">
+                    <h6 class="list-header">{{ formatImage(image.created_at) }}</h6>
+                    <div class="image-set">
+                        <div class="thumbnail" (click)="openZoomImg(image.picture_front)">
+                            <img [src]="image.picture_front" alt="">
+                        </div>
+                        <div class="thumbnail" (click)="openZoomImg(image.picture_back)">
+                            <img [src]="image.picture_back" alt="">
+                        </div>
+                        <div class="thumbnail" (click)="openZoomImg(image.picture_side)">
+                            <img [src]="image.picture_side" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
+<ion-content *ngIf="photosLoaded && allImages.length === 0">
+    <div class="no-photos empty-state ion-padding container">
+        <h6>Add your current photos here. It's easy!</h6>
+        <ul>
+            <li>Start at the front. Smile. Snap.</li>
+            <li>Now take one from the back. (Feel free to ask for help with that one.)</li>
+            <li>Now turn to your side. Snap.</li>
+            <li>Optional: add a video and progress comments. (Yes, this is where you brag!)</li>
+            <li>Submit.</li>
+        </ul>
+        <div><strong>Boom!</strong> All done.</div>
+
+        <ion-button expand="full"
+                    *ngIf="platform.is('cordova')"
+                    routerLink="/camera">Take Photos</ion-button>
+    </div>
+</ion-content>

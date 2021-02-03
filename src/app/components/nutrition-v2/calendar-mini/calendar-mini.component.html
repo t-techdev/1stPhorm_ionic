@@ -1,0 +1,18 @@
+<div class="weeks">
+  <ion-button fill="clear" (click)="subWeek()" [disabled]="idx===0">
+    <ion-icon name="ios-arrow-back"></ion-icon>
+  </ion-button>
+  <span>{{startDate}} - {{endDate}}</span>
+  <ion-button fill="clear" (click)="addWeek()" [disabled]="idx>0">
+    <ion-icon name="ios-arrow-forward"></ion-icon>
+  </ion-button>
+</div>
+<div class="row">
+  <ng-container *ngFor="let day of days">
+    <div class="weekday" [ngClass]="{'sel': date.format('D')===day.day.format('D') && !equalDate(day.day), 'disable': equalDate(day.day)}"
+      tappable (click)="selectDate(day.day, day.weekday)">{{ weekdays[day.weekday] }}</div>
+  </ng-container>
+</div>
+<div class="date">
+  {{date.format('dddd')}}, {{seletedDate}}
+</div>

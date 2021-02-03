@@ -1,0 +1,77 @@
+@import "./../add-food/add-food.component";
+
+.custom-search-box {
+    padding-bottom: var(--ion-padding, 16px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-food {
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    padding-bottom: 10px;
+    > div {
+        display: inline-block;
+    }
+    .create-custom-food {
+        color: var(--azure);
+        margin-left: 5px;
+    }
+}
+
+.search-listing {
+    height: calc(100% - 64px);
+    ul {
+        margin: 0;
+        list-style: none;
+        height: 100%;
+        overflow: hidden;
+        overflow-y: scroll;
+        padding: var(--ion-padding);
+    }
+  
+    li {
+        font-weight: 600;
+        padding: 5px 0;
+        font-size: 14px;
+        text-transform: capitalize;
+        display: flex;
+        align-items: center;
+    
+        &.meal-template {
+            align-items: start;
+            ion-icon {
+                color: var(--ion-color-brand);
+                font-size: 30px;
+                margin-right: 14px;
+                margin-left: 6px;
+            }
+            > div {
+                width: calc(100% - 40px);
+            }
+        }
+    
+        .category {
+            color: var(--ion-1p-border-grey);
+            font-weight: 100;
+            font-size: 12px;
+            display: block;
+            margin-top: 5px;
+        }
+    
+        img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            margin-right: var(--ion-margin, 10px);
+            float: left;
+        }
+    }
+}
+
+.spinner-container {
+    padding-top: 100px;
+    align-items: flex-start;
+}

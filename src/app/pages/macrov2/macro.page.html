@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nutrition</ion-title>
+    <ion-buttons slot="end">
+      <div class="logo-button">
+        <div class="tb-logo"></div>
+      </div>
+    </ion-buttons>
+    <ion-buttons slot="end" tappable (click)="openPopover($event)">
+      <ion-icon name="md-more"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <div *ngIf="transphormer && macroCounting?.currentWeight">
+    <app-calendar [dateTime]="date" [feature]="true" (dateChange)="resetMacroInfoForDate($event)"></app-calendar>
+
+    <div class="inline feature">
+      <app-macros categoryName="Calories" [goalValue]="macroCounting.activeBmrValues.calories" [currentNutritionValue]="macroCounting.calories"
+        dangerColor="red" barColor="var(--vibrant-green)"></app-macros>
+      <app-macros categoryName="protein" [goalValue]="macroCounting.activeBmrValues.protein" [currentNutritionValue]="macroCounting.protein"
+        dangerColor="red" barColor="var(--yellow-orange)"></app-macros>
+      <app-macros categoryName="carbs" [goalValue]="macroCounting.activeBmrValues.carbs" [currentNutritionValue]="macroCounting.carbs"
+        dangerColor="red" barColor="var(--ion-color-brand)"></app-macros>
+      <app-macros categoryName="fats" [goalValue]="macroCounting.activeBmrValues.fats" barColor="#ff5079" dangerColor="red" [currentNutritionValue]="macroCounting.fats"></app-macros>
+    </div>
+
+    <!-- Water Component  -->
+    <app-water [currentValue]="macroCounting.macroCountingInfo.water_amount" dangerColor="red" [totalValue]="nutritionCalculator.waterIntake(macroCounting.currentWeight.weight)"
+      (waterSelected)="updateWaterAmount($event)"></app-water>
+    <div class="divider"></div>
+
+    <!-- Meal List -->
+    <app-meal-list [nutritionDayId]="macroCounting.macroCountingInfo.id" [meals]="macroCounting.meals" (mealUpdated)="updateMeal($event)"
+      (mealCopied)="mealCopied($event)"></app-meal-list>
+  </div>
+</ion-content>

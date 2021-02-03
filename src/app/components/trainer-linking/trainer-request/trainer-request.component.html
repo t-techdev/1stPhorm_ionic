@@ -1,0 +1,55 @@
+<div class="flexible-container">
+  <div class="header-image">
+    <img *ngIf="user.sex === '1'" src="/assets/photos/male/advisor-1.jpg"/>
+    <img *ngIf="user.sex !== '1'" src="/assets/photos/female/advisor-1.jpg"/>
+  </div>
+  <div class="flexible-container ion-padding-horizontal">
+    <p class='empty-state'>
+      If you want to train for someone you know, enter their Instagram, Twitter, Email or Legionnaire ID. If you don't have
+      one, we will assign you a staff Advisor.
+    </p>
+
+    <div class="global-input">
+      <ion-input [spellcheck]="false"
+                 #search
+                 inputmode="text"
+                 [(ngModel)]="searchValue"
+                 placeholder="Email, IG, Twitter, or Legionnaire ID..."></ion-input>
+    </div>
+
+    <div *ngIf="searching" class="ion-text-center ion-margin-top">
+      <ion-spinner name="dots"></ion-spinner>
+    </div>
+
+    <app-advisor-card *ngIf="advisor" [advisor]="advisor"></app-advisor-card>
+
+    <section *ngIf="!invalid && !searching && advisor === null && searchValue.length > 4"
+             class="ion-margin-top not-found">
+      <div class="ion-color-danger">We could not find an Advisor that matched your search. Are you sure you've entered
+        it in correctly?
+      </div>
+    </section>
+    <section *ngIf="invalid" class="ion-margin-top not-found">
+      <div class="ion-color-danger">Please enter only social media names, email addresses, or legionnaire IDs. No URLs.</div>
+    </section>
+
+    <div class="mt-auto button ion-margin-top">
+      <ion-button *ngIf="!advisor" color="primary" expand="full" (click)="getDefault()">
+        Auto-Assign Advisor
+      </ion-button>
+
+      <ion-button *ngIf="advisor" color="primary" expand="full" (click)="assign()">
+        Join {{ advisor.transphormer.first_name }}'s Team
+      </ion-button>
+      <ion-button *ngIf="previousTrainerEmail"
+                  class="ion-margin-vertical"
+                  expand="full"
+                  color="tertiary"
+                  fill="clear"
+                  (click)="previousAdvisor()">
+        <ion-icon name="undo" slot="start"></ion-icon>
+        Re-join previous advisor
+      </ion-button>
+    </div>
+  </div>
+</div>

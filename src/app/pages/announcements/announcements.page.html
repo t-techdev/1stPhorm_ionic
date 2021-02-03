@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Announcements</ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <section class="announcement" *ngFor="let announcement of announcements">
+    <header>
+      <h5 class="semibold">{{ announcement.trainer.transphormer.display_name }}</h5>
+      <small>Sent {{ announcement.sent.format('MMMM Do, YYYY [at] h:mm a') }}</small>
+    </header>
+    <h3>{{ announcement.heading }}</h3>
+    <div class="content" [innerHTML]="announcement.announcements"></div>
+  </section>
+
+  <div class='empty-state ion-padding' *ngIf="!announcements || announcements.length === 0">
+    <p>Nothing to see here!</p>
+    <p>New here? This is where you'll receive group updates, motivation and tips from your Advisor.</p>
+    <p>Check back here often and keep Transphorming!</p>
+    <p><i>To private message your advisor, tap on the Chat icon in the menu below.</i></p>
+  </div>
+  <div class="fade"></div>
+</ion-content>

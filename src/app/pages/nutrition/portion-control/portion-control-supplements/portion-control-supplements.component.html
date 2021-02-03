@@ -1,0 +1,28 @@
+<section class="divider" *ngIf="supplements">
+  <ion-item class="food-header" tappable (click)="toggleSupplementExpanded()">
+    <div class="dim">
+      <ion-icon [name]="supplements.expanded ? 'ios-arrow-up' : 'ios-arrow-down'"></ion-icon>
+    </div>
+    <ion-label>{{ supplements.name }}</ion-label>
+    <div class="dim blue" tappable (click)="customize(); $event.stopPropagation();">
+      <ion-icon src="/assets/icon/customize.svg"></ion-icon>
+    </div>
+  </ion-item>
+  <ng-container *ngIf="supplements.expanded">
+    <ion-item *ngIf="supplements.noSupplements">
+      <ion-label class="add-supplements" tappable (click)="customize()">
+        <ion-icon name="add"></ion-icon>
+        Add supplements
+      </ion-label>
+    </ion-item>
+    <ng-container *ngFor="let supplement of supplements.items; let i = index;">
+      <ion-item *ngIf="supplement.use" tappable>
+        <ion-thumbnail>
+          <img [src]="'assets/nutrition/'+supplement.name+'.png'" onError="style='display:none'"/>
+        </ion-thumbnail>
+        <ion-label>{{ supplement.name }}</ion-label>
+        <ion-checkbox [checked]="supplement.selectedNutrition" (ionChange)="updateSelectedNutrition(i)"></ion-checkbox>
+      </ion-item>
+    </ng-container>
+  </ng-container>
+</section>

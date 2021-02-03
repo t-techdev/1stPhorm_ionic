@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Body Metrics</ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <div class="metric-info">
+    <div class="metric-header">
+      <div class="title">
+        Body Metrics
+        <ion-button type="icon" fill="clear" (click)="openHelpPopover($event)">
+          <ion-icon src="/assets/icon/help.svg"></ion-icon>
+        </ion-button>
+      </div>
+      <ion-button fill="clear" class="actions" (click)="navigateTo('/body-metrics/customize')">
+        <ion-icon src="/assets/icon/customize.svg"></ion-icon>
+        Customize
+      </ion-button>
+    </div>
+    <p>Please measure and enter the values below.</p>
+  </div>
+  <ion-list>
+    <ion-item class="metric-item" lines="none" (click)="navigateTo('/body-metrics/list/weigh-ins')">
+      <ion-icon src="/assets/icon/weigh-in.svg" slot="start" class="premium"></ion-icon>
+      <div class="macro-content">
+        <div class="macro-name">Weight</div>
+        <div class="logged-value">
+          <span
+            class="value" *ngIf="latestWeight">
+            {{ latestWeight | convertWeight }} {{ user.unitTypeLabel('weight') }}
+          </span>
+          <span class="logged-date">
+            /
+            {{ this.momentInstance(latestWeight?.logged_on)?.local().isSameOrAfter(today) ? 'Today' : this.momentInstance(latestWeight?.logged_on)?.local().format('MMM DD') }}
+          </span>
+        </div>
+      </div>
+      <ion-button fill="none" type="icon" slot="end" (click)="openAddRecordForWeight($event)"
+                  *ngIf="this.momentInstance(latestWeight?.logged_on)?.isBefore(today)"
+      >
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-list-header *ngIf="!user.isPaidUser()">
+      Premium
+      <ion-button fill="clear" (click)="upgradePremiumDialog()" class="ion-float-right">Upgrade</ion-button>
+    </ion-list-header>
+
+    <ng-container *ngFor="let metricType of metricTypes">
+      <ion-item class="metric-item" lines="none" *ngIf="metricType.configuration.use"
+                (click)="navigateToMetric('/body-metrics/list/' + metricType.value)"
+      >
+        <ion-icon [src]="metricType.icon" slot="start"
+                  [class.premium]="user.isPaidUser()"
+                  class="body-metric-icon"></ion-icon>
+        <div class="macro-content">
+          <div class="macro-name">{{ metricType.name }}</div>
+          <div class="logged-value"><span
+            class="value">
+            <ng-container *ngIf="metricType.metric">
+              {{ (metricType.metric | convertLength) + ' ' + (user.unitTypeLabel('length')) }}
+            </ng-container>
+            <ng-container *ngIf="!metricType.metric">
+              NA
+            </ng-container>
+          </span>
+            <span class="logged-date">
+            /
+              {{ metricType.metric ? metricType.metric.logged_on.format('MMM DD') : 'Not Logged' }}
+          </span>
+          </div>
+        </div>
+
+        <ion-button *ngIf="user.isPaidUser() && metricType.metric?.logged_on.isBefore(today)" fill="none"
+                    type="icon" slot="end"
+                    (click)="openAddRecordForMetric($event, metricType)"
+        >
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
+
+        <ion-button *ngIf="!user.isPaidUser()" fill="none" type="icon" slot="end">
+          <ion-icon src="/assets/icon/premium.svg" class="premium"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

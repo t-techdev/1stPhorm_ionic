@@ -1,0 +1,53 @@
+:host {
+  --dashboard-content-padding: 24px;
+}
+
+ion-content {
+  --background: white;
+}
+
+ion-icon {
+  color: var(--ion-color-icon);
+}
+
+.padded {
+  padding: var(--dashboard-content-padding, 24px);
+}
+
+.purple {
+  --ion-color-base: #4267b2;
+  --app-paragraph-size: 36px;
+  --border-color: #4267b2;
+  --color: #4267b2;
+  --ion-color-icon: #4267b2;
+}
+
+#icon-message {
+  .content {
+    display: flex;
+    align-items: top;
+    .icon {
+      width: 15%;
+      padding-right: var(--default-margin);
+      --ion-color-icon: var(--ion-color-contrast);
+    }
+    .message p {
+      margin: 0;
+      color: var(--ion-color-contrast);
+    }
+  }
+  .container {
+    display: flex;
+    padding: var(--default-margin);
+    border-radius: 4px;
+    background: var(--ion-color-tint);
+    flex-direction: column;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    ion-button {
+      color: var(--ion-color-contrast);
+    }
+  }
+}

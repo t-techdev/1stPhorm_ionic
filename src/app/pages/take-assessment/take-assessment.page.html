@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Assessment</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" type="icon" (click)="this.state.previousStep()"
+                  mode="md" *ngIf="this.state.currentStep > 1">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<app-step-counter
+  [totalSteps]="this.state.totalStep"
+  [currentStep]="this.state.currentStep">
+</app-step-counter>
+<ion-content class="content ion-padding-horizontal">
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <app-question [showSkeleton]="true" *ngIf="loadingData"></app-question>
+  <ng-container *ngIf="this.state.questions.length > 0 && !this.state.isCameraStep()">
+    <app-question
+      [question]="this.state.question"
+      (optionSelected)="updateQuestionOption($event)"
+    ></app-question>
+  </ng-container>
+
+  <ng-container *ngIf="this.state.isCameraStep()">
+    <app-photo-review></app-photo-review>
+  </ng-container>
+
+</ion-content>

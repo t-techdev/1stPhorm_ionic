@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="trainerActionSheet()" color="primary" fill="clear" *ngIf="hasTrainer && canMessage">
+        <ion-icon name="more"></ion-icon>
+      </ion-button>
+      <div class="tb-logo"></div>
+
+    </ion-buttons>
+    <ion-title>Chat w/ {{ application?.trainer.transphormer.first_name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div class="spinner-container" *ngIf="spinner">
+  <ion-spinner></ion-spinner>
+</div>
+
+<ion-content *ngIf="checkComplete && !hasTrainer" class="ion-padding">
+  <p class='empty-state'>You don't currently have an advisor. Request an advisor to receive personalized tips and advice on nutrition, workouts,
+    motivation and more. Message your advisor directly anytime - whether you want to share a win or ask for support!</p>
+
+  <div class="button global-margin-top-25">
+    <ion-button color="primary" expand="full" routerDirection="root" routerLink="/trainer-requests">Request an Advisor
+    </ion-button>
+  </div>
+</ion-content>
+
+<div id="messaging-page" *ngIf="checkComplete && hasTrainer">
+  <ion-content class="message-listing" *ngIf="canMessage" #messageContent>
+    <app-message-list [senderId]="this.user.id"
+                      [messages]="messages">
+    </app-message-list>
+  </ion-content>
+
+  <div class='position-relative' *ngIf="canMessage">
+    <div class="spinner-container" *ngIf="spinner_send_message">
+      <ion-spinner></ion-spinner>
+    </div>
+    <app-message-entry (sendMessage)='sendMessage($event)'
+                       (sendAttachment)="sendAttachment($event)"
+                       [allowMedia]="(feature | async)"
+                       [isUploading]="isUploading"
+                       [uploadProgress]="uploadProgress"
+                       [uploadCount]="uploadCount"
+                       (scrollBottom)='scrollBottom()'
+                       >
+    </app-message-entry>
+  </div>
+</div>

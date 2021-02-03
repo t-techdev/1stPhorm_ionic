@@ -1,0 +1,17 @@
+<div class="messaging">
+  <form [formGroup]="messageForm" (ngSubmit)="submit()">
+    <div id="upload-progress" class="upload-progress" *ngIf="isUploading">
+      <ion-badge color="primary" *ngIf="displayUploadCount">{{uploadCount}}↑</ion-badge>
+      <ion-progress-bar [value]="uploadProgress"></ion-progress-bar>
+    </div>
+    <div id="message-entry" class="message-entry">
+      <ion-button color="medium-shade" type="button" fill="clear" size="small" (click)="addAttachment()" *ngIf="allowAttachments" class="message-entry__attach">
+        <ion-icon name="md-attach" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-textarea autocapitalize="on" appAutoresize (resize)="scrollBottomEvent()" formControlName="message" placeholder="Type a message..."></ion-textarea>
+      <ion-button type="submit" fill="clear" [disabled]="messageForm.invalid" class="message-entry__send">
+        <ion-icon name="md-send" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+  </form>
+</div>

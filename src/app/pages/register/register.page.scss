@@ -1,0 +1,42 @@
+ion-select {
+  border: 1px solid #747d83;
+  border-radius: 3px;
+  margin-bottom: var(--default-margin);
+}
+
+ion-row {
+  margin: 0 -5px;
+}
+
+.inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.terms-conditons {
+  display: flex;
+  align-items: center;
+
+  p {
+    font-size: 16px;
+    padding: 0 20px;
+  }
+}
+
+div.description {
+  font-size: small;
+  margin-top: var(--default-margin);
+}
+
+
+
+.global-container {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.div_buttons {
+  margin-top: auto;
+}

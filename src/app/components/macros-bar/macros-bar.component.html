@@ -1,0 +1,47 @@
+<section class="card ion-padding">
+  <div class="header" *ngIf="showHeader">
+    <div class='macro_title'>{{topLeft || 'Macros'}}
+      <ion-icon name="help-circle-outline" tappable (click)="showHelp = !showHelp"></ion-icon>
+    </div>
+    <div class="dim">
+      <ng-content select="[slot='top-right']"></ng-content>
+      <div *ngIf="showTopRight">{{ topRight || 'Goal' }}
+        <span *ngIf="isCustom">*</span>
+      </div>
+    </div>
+  </div>
+  <div class='macro_help' *ngIf="showHelp">
+    <p>My Macros</p>
+    These macros have been calculated based on the information you provided and your goals. These macros will automatically adjust
+    as you progress. If you have questions or need help hitting these macros everyday feel free to shoot your Transphormation
+    Advisor a message!
+  </div>
+  <div class="macros">
+    <div class="calories">
+      <div class="val">{{ calories }}</div>
+      <div>calories</div>
+    </div>
+    <div class="protein">
+      <div class="val">{{ protein }}</div>
+      <div>Protein
+        <em>(g)</em>
+      </div>
+    </div>
+    <div class="carbs">
+      <div class="val">{{ carbs }}</div>
+      <div>Carbs
+        <em>(g)</em>
+      </div>
+    </div>
+    <div class="fats">
+      <div class="val">{{ fats }}</div>
+      <div>Fats
+        <em>(g)</em>
+      </div>
+    </div>
+  </div>
+  <ng-content></ng-content>
+  <small>
+    <strong class="dim" *ngIf="isCustom">Macros have been customized.</strong>
+  </small>
+</section>

@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button [defaultHref]="backHref" text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title>Nutrition Details</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="flexible-container feature">
+    <div class="header" slot="fixed">
+        <div>Date</div>
+        <div>Cals</div>
+        <div>Protein</div>
+        <div>Carbs</div>
+        <div>Fats</div>
+        <div>Fiber</div>
+    </div>
+    <div class="listing" *ngIf="dayData.length > 0">
+        <div (click)="expandDate(macro)" [ngClass]="{expanded: this.expansions[macro.track_date]}" class="day" *ngFor="let macro of sortedFood; let i = index;">
+            <div class="data" *ngIf="macro.calories !== 0">
+                <div class="date">
+                    <ion-icon name="calendar"></ion-icon>
+                    {{ macro.short_date }}
+                </div>
+                <div class="calories">{{ macro.calories }}</div>
+                <div class="protein">{{ macro.protein }}</div>
+                <div class="carbs">{{ macro.carbs }}</div>
+                <div class="fats">{{ macro.fats}}</div>
+                <div class="fiber">{{ macro.fiber}}</div>
+            </div>
+            <div class="data empty" *ngIf="macro.calories === 0">
+                <div class="date">
+                    <ion-icon name="calendar"></ion-icon>
+                    {{ macro.short_date }}
+                </div>
+                <div class="message ion-text-center">No data.</div>
+            </div>
+            <div *ngIf="this.expansions[macro.track_date]" class="meals">
+                <div class="meal" *ngFor="let meal of macro.meals; let j = index;">
+                    <div class="data">
+                        <div class="meal-number">M #{{ meal.meal }}</div>
+                        <div>{{ meal.calories }}</div>
+                        <div>{{ meal.protein }}</div>
+                        <div>{{ meal.carbs }}</div>
+                        <div>{{ meal.fats}}</div>
+                        <div>{{ meal.fiber}}</div>
+                    </div>
+                    <div *ngFor="let food of meal.foods; let j = index;">
+                        <div class="food">
+                            <div class="meal-number">{{ food.name }}</div>
+                            <div class="details">
+                              <div>{{ food.calories }}</div>
+                              <div>{{ food.protein }}</div>
+                              <div>{{ food.carbs }}</div>
+                              <div>{{ food.fats}}</div>
+                              <div>{{ food.fiber}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ion-text-center">
+            <small>Tap on any line to get daily breakdowns.</small>
+        </div>
+    </div>
+    <div *ngIf="dayData.length === 0" class="centered">
+        No nutrition data available for the last 2 weeks.
+    </div>
+</ion-content>

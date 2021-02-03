@@ -1,0 +1,23 @@
+.advisor-card {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid var(--light-blue-grey);
+  border-radius: 2px;
+  align-items: center;
+  background: var(--pale-grey);
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    font-size: 90%;
+  }
+
+  .name {
+    font-weight: 600;
+  }
+
+  ion-avatar {
+    font-size: 36pt;
+    line-height: 1em;
+  }
+}

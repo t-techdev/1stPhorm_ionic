@@ -1,0 +1,25 @@
+<ion-item-sliding>
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  <ion-item class="ion-no-padding">
+    <div class="main" tappable (click)="openEditQuickItem.emit(quickItem)">
+      <div class="food-item-image">
+        <img src="assets/nutrition/quick-add.png"/>
+      </div>
+      <div class="item-content">
+        <div>Quick Add</div>
+        <div class="calories-color">{{quickItem.calories | number:'0.0-0' }} cal</div>
+        <div class="sub-line">
+          Protein: {{quickItem.protein | number:'0.0-0' }} 
+          Carbs: {{quickItem.carbs | number:'0.0-0' }} 
+          Fats: {{quickItem.fats | number:'0.0-0' }}
+          Fiber: {{quickItem.fiber | number:'0.0-0'}}
+        </div>
+      </div>
+    </div>
+  </ion-item>
+  <ion-item-options side="end">
+    <ion-button color="danger" (click)="removeItem()">Delete</ion-button>
+  </ion-item-options>
+</ion-item-sliding>

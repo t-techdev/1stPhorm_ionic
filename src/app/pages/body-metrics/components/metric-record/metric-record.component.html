@@ -1,0 +1,18 @@
+<ion-item lines="none" class="metric-record" [class.border-bottom]="borderBottom">
+  <div class="metric-value">
+    <span *ngIf="record.weight">
+      {{ record | convertWeight }} {{ unit }}
+    </span>
+    <span *ngIf="record.metric_value">
+      {{ record | convertLength }} {{ unit }}
+    </span>
+    <ion-icon *ngIf="this.previousRecord" [name]="diffIsMore ? 'arrow-round-up' : 'arrow-round-down'"></ion-icon>
+  </div>
+  <div class="metric-date">
+    {{ this.momentInstance(record.logged_on).local().format('MMM DD') }}
+    <span *ngIf="this.momentInstance(record.logged_on).local().isSameOrAfter(today)">(Today)</span>
+  </div>
+  <ion-button type="icon" fill="clear" class="action" slot="end" (click)="action.emit($event)">
+    <ion-icon name="more" mode="md"></ion-icon>
+  </ion-button>
+</ion-item>

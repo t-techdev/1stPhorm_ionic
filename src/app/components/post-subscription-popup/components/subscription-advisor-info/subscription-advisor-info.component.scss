@@ -1,0 +1,25 @@
+.say-hi {
+  display: flex;
+  justify-content: space-between;
+  > div {
+    width: 48%;
+  }
+}
+
+.profile-photo {
+  img {
+    border-radius: 50%;
+  }
+  height: 148px;
+  width: 148px;
+  margin: calc(var(--default-margin) * 2) auto;
+  ion-icon {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+p {
+  font-size: 11pt;
+  color: var(--greyish-brown);
+}

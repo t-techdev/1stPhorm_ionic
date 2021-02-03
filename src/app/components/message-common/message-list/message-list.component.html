@@ -1,0 +1,7 @@
+<div *ngIf='messages.length==0'>
+  <p class="empty-state ion-padding">You don't currently have any messages from your advisor. When you get messages, they’ll show up here.</p>
+  <p class="empty-state ion-padding-horizontal"> Feel free to message your advisor anytime you what to share a win, ask a question or get support!</p>
+</div>
+<ng-container *ngFor="let message of messages">
+  <app-message [senderId]="this.senderId" [message]='message'></app-message>
+</ng-container>

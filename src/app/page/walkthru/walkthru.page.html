@@ -1,0 +1,71 @@
+<ion-content [scrollY]="false">
+  <ion-slides [pager]="true"
+              [options]="getOptions()"
+              (ionSlideDidChange)="didChange()"
+              #slider>
+    <ion-slide>
+      <app-walkthru-item title="Dashboard"
+                         image="/assets/walkthru/dashboard.jpg">
+        <p>Get a quick overview of your nutrition stats and recommendations, access workout shortcuts and view current
+          body metrics. This is also where you’ll find important daily prompts.</p>
+      </app-walkthru-item>
+    </ion-slide>
+    <ion-slide>
+      <app-walkthru-item title="Workout"
+                         image="/assets/walkthru/workout.png">
+        <p>Here you’ll find your daily workout and directions, track your reps and submit your completed workouts.</p>
+      </app-walkthru-item>
+    </ion-slide>
+    <ion-slide>
+      <app-walkthru-item title="Nutrition"
+                         *ngIf="userService.user.likely_to_do === NutritionPlan.PortionControl"
+                         image="/assets/walkthru/nutrition-portion-control.png">
+        <p>Access the approved foods list, log what you eat, and review your macros.</p>
+      </app-walkthru-item>
+      <app-walkthru-item title="Nutrition"
+                         *ngIf="userService.user.likely_to_do === NutritionPlan.MacroMealPlan"
+                         image="/assets/walkthru/nutrition-macro-meal-plan.png">
+        <p>Build custom meal plans with exact portion sizes, log your food, and review your macros.</p>
+      </app-walkthru-item>
+      <app-walkthru-item title="Nutrition"
+                         *ngIf="userService.user.likely_to_do === NutritionPlan.CalorieMacroCounting"
+                         image="/assets/walkthru/nutrition.png">
+        <p>Precise macros recommendations and tracking with and extensive food list for ultimate control and flexibility.</p>
+      </app-walkthru-item>
+    </ion-slide>
+    <ion-slide>
+      <app-walkthru-item title="Chat"
+                         image="/assets/walkthru/inbox.png">
+        <p *ngIf="userService.user.is_paid_user">Use Chat to message your advisor anytime. Ask questions, get support, and get results!</p>
+        <p *ngIf="!userService.user.is_paid_user">Use Chat to message your advisor anytime. This feature is available to premium members.</p>
+      </app-walkthru-item>
+    </ion-slide>
+    <ion-slide>
+      <app-walkthru-item title="More"
+                         image="/assets/walkthru/more.png">
+        <p *ngIf="userService.user.is_paid_user">Here you can find announcements from your advisor, add photos and
+          weigh-ins and access Live Streams. This is also where you’ll access settings and support.</p>
+        <p *ngIf="!userService.user.is_paid_user">Here you can find announcements from your advisor, add photos and
+          weigh-ins and access Live Streams (premium). This is also where you’ll access settings and support.</p>
+      </app-walkthru-item>
+    </ion-slide>
+  </ion-slides>
+  <div class="buttons">
+    <ion-button fill="clear"
+                color="light"
+                routerDirection="root"
+                routerLink="/dashboard">Skip
+    </ion-button>
+    <ion-button fill="clear"
+                color="light"
+                *ngIf="!isComplete"
+                (click)="nextSlide()">Next
+    </ion-button>
+    <ion-button fill="clear"
+                color="light"
+                *ngIf="isComplete"
+                routerDirection="root"
+                routerLink="/dashboard">Finish
+    </ion-button>
+  </div>
+</ion-content>

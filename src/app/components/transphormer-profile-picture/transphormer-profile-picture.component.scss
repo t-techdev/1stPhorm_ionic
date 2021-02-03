@@ -1,0 +1,39 @@
+.transphormer-profile-picture {
+
+    .avatar  {
+        background-color: var(--ion-1p-light);
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .loading-panel {
+        text-align: center;
+        padding: 5px;
+    }
+
+    .loading-panel > ion-card {
+        border: 0;
+    }
+
+    .default-profile-icon {
+        color: var(--ion-color-primary-contrast);
+        position: absolute;
+        top: calc(50% - 12px);
+        left: calc(50% - 12px);
+        font-size: x-large;
+    }
+
+    .ion-md-camera {
+        color: var(--ion-color-primary-contrast);
+    }
+
+    .ion-md-camera {
+        color: var(--ion-color-primary-contrast);
+    }
+
+    .ion-ios-camera {
+        color: var(--ion-color-primary-contrast);
+    }
+
+}
+

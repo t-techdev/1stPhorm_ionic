@@ -1,0 +1,21 @@
+@import "./../food-item/food-item.component";
+
+.food-item-image {
+    opacity: 0.6;
+    border-radius: 50%;
+}
+
+ion-item-sliding {
+    ion-item {
+        --border-style: 0px;
+        --inner-padding-start: 0px;
+        --inner-padding-end: 0px;
+    }    
+    ion-item-options {
+        ion-button {
+            height: 100%;
+            margin: 0;
+            --border-radius: 0px;
+        }
+    }
+}

@@ -1,0 +1,28 @@
+:host {
+  --option-border-color: rgba(0, 0, 0, 0.15);
+  --option-selected-background: var(--pale-sky-blue);
+}
+
+p {
+  font-size: 12pt;
+  margin-top: 10px;
+}
+
+.question-container {
+  .title {
+    padding: var(--ion-padding, 16px) 0;
+  }
+
+  .options {
+    app-question-option {
+      &.selected {
+        --background: var(--option-selected-background);
+      }
+    }
+  }
+}
+
+ion-icon {
+  width: 30px;
+  height: 30px;
+}

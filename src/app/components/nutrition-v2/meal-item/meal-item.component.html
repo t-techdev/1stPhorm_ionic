@@ -1,0 +1,32 @@
+<div *ngIf="meal">
+  <ion-item class="meal_header" lines='none'>
+    <div class="dim" tappable (click)="insOpened = !insOpened">
+      <ion-icon [name]="insOpened ? 'ios-arrow-up' : 'ios-arrow-down'"></ion-icon>
+    </div>
+    <ion-label tappable (click)="insOpened = !insOpened">Meal {{ meal.meal_count }}</ion-label>
+    <div class="dim blue" tappable (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </div>
+    <div class="dim more"
+         [class.disabled]="meal.food_items.length === 0" tappable (click)="more(meal, $event)">
+      <ion-icon name="md-more"></ion-icon>
+    </div>
+  </ion-item>
+  <ng-container *ngIf="insOpened">
+    <div *ngFor="let item of meal.food_items; let itemIndex = index;">
+      <app-food-item 
+        *ngIf="!item.quick_add"
+        [foodItem]="item"
+        (openEditFoodItem)="openEditFoodItem($event, itemIndex)">
+      </app-food-item>
+      <app-quick-item
+        *ngIf="item.quick_add"
+        [quickItem]="item"
+        [nutritionDayId]="nutritionDayId"
+        (openEditQuickItem)="openEditQuickItem($event, itemIndex)"
+        (removeQuickItem)="removeQuickItem($event, itemIndex)">
+      </app-quick-item>
+    </div>
+  </ng-container>
+  <div class='divider'></div>
+</div>

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Body Metrics</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/dashboard" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div class="heading ion-text-center ion-margin-bottom" *ngIf="weights.length > 1">
+    {{ weights[weights.length - 1] | convertWeight }} {{ user.unitTypeLabel('weight') }}
+    <ion-icon name="arrow-round-forward"></ion-icon>
+    {{ weights[0] | convertWeight }}{{ user.unitTypeLabel('weight') }}
+  </div>
+
+  <div class="heading" *ngIf="weights.length === 1">
+    {{ weights[0] | convertWeight }} {{ user.unitTypeLabel('weight') }}
+    <ion-icon name="arrow-round-forward"></ion-icon>
+    {{ weights[0] | convertWeight }}{{ user.unitTypeLabel('weight') }}
+  </div>
+
+  <div class="heading ion-margin-bottom" *ngIf="weights.length === 0">
+    No weigh-ins to see. Log one!
+  </div>
+
+  <app-chart class="ion-margin-vertical" [weights]="weights"></app-chart>
+  <ion-list class="ion-margin-top">
+    <ion-item *ngFor="let weight of weights; let i = index; let last = last">
+      <ion-label>{{ weight | convertWeight }} {{ user.unitTypeLabel('weight') }}
+        <span class="diff" *ngIf="!last">
+          ({{ diffInWeight(i) }} {{ user.unitTypeLabel('weight', Math.abs(diffInWeight(i)) <= 1) }})
+        </span>
+      </ion-label>
+      <span class="time">{{ weight.logged_on.fromNow() }}</span>
+    </ion-item>
+  </ion-list>
+</ion-content>

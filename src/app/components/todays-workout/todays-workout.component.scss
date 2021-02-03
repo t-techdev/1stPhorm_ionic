@@ -1,0 +1,32 @@
+.workouts {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin: 24px 0;
+  > div {
+    svg {
+      width: 24px;
+      height: auto;
+      margin-bottom: 4px;
+      circle {
+        stroke-width: 3;
+        stroke: var(--ion-color-success);
+        fill: none;
+      }
+      &.completed {
+        circle {
+          fill: var(--ion-color-success);
+        }
+      }
+      &.future {
+        circle {
+          stroke: var(--dim);
+        }
+      }
+    }
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+  }
+}

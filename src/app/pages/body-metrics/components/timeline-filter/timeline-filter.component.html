@@ -1,0 +1,7 @@
+<div class="timeline-container">
+  <ng-container *ngFor="let date of dates">
+    <div class="timeline" [class.active]="date.active">
+      <ion-button expand="full" fill="clear" (click)="updateActiveDate(date)">{{ date.name }}</ion-button>
+    </div>
+  </ng-container>
+</div>

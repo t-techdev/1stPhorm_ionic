@@ -1,0 +1,23 @@
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  --ion-margin-bottom: 10px;
+}
+
+p {
+  --app-paragraph-size: 13pt;
+  color: var(--ion-color-brand-black);
+}
+
+form {
+  margin-top: auto;
+}
+
+ion-button {
+  margin-bottom: var(--ion-margin-bottom);
+}
+
+a.skip {
+  color: var(--ion-color-medium);
+}

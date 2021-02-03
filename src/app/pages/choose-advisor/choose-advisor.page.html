@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Your Advisor</ion-title>
+    <ion-buttons slot="end">
+      <div class="tb-logo"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="flexible-container full-height">
+    <h3>Were you invited by someone?</h3>
+    <p>The person you select will be your Advisor. If you don’t specify an Advisor, we’ll assign one to you. You can
+      switch Advisors at any time.</p>
+    <div class="global-input">
+      <ion-label position="stacked">Your Advisor</ion-label>
+      <ion-input #search [(ngModel)]="searchValue" placeholder="Email, IG, Twitter, or Legionnaire ID..."></ion-input>
+    </div>
+    <div *ngIf="searching" class="ion-text-center ion-margin-top">
+      <ion-spinner name="dots"></ion-spinner>
+    </div>
+
+    <app-advisor-card *ngIf="advisor" [advisor]="advisor"></app-advisor-card>
+
+    <section *ngIf="!invalid && !searching && advisor === null && searchValue.length > 4" class="ion-margin-top not-found">
+      <div class="ion-color-danger">We could not find an Advisor that matched your search. Are you sure you've entered it in correctly?</div>
+    </section>
+    <section *ngIf="invalid" class="ion-margin-top not-found">
+      <div class="ion-color-danger">Please enter only usernames, email addresses, or legionnaire IDs. No URLs.</div>
+    </section>
+    <ion-button *ngIf="advisor" (click)="continue()" class="mt-auto">
+      Continue
+    </ion-button>
+    <ion-button *ngIf="!advisor" (click)="getDefault()" class="mt-auto">
+      Auto-Assign Advisor
+    </ion-button>
+  </div>
+</ion-content>

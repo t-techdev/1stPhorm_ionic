@@ -1,0 +1,18 @@
+<div class="steps-container">
+  <div class="steps" [class.mini-mode]="miniMode">
+    <div class="step"
+         *ngFor="let step of steps"
+         [class.completed]="step <= currentStep || step <= completedSteps"
+         [class.active]="step === currentStep"
+    >
+      <div class="bar"></div>
+      <div tappable
+           *ngIf="step < currentStep || step <= completedSteps + 1"
+           class="target"
+           (click)="stepTapped.emit(step)"></div>
+    </div>
+  </div>
+  <div class="step-info" *ngIf="!miniMode">
+    <div>STEP</div> <div>{{ currentStep }} <span class="step-separator">/</span> {{ totalSteps }}</div>
+  </div>
+</div>

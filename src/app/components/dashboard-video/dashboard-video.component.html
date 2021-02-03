@@ -1,0 +1,12 @@
+<section class="ion-padding videos">
+  <div *ngIf="!latestVideo">
+    <div class="ion-text-center">
+      <ion-spinner name="dots"></ion-spinner>
+    </div>
+  </div>
+  <div class="video" *ngIf="latestVideo" (click)="videoClick()" >
+    <img [src]="latestVideo.thumbnail | safeUrl" alt="">
+    <p class="video-title">{{latestVideo.title}}</p>
+    <div class="overlay" *ngIf="readonly"></div>
+  </div>
+</section>

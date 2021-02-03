@@ -1,0 +1,33 @@
+img {
+  height: 60vh;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 11px 20px 0px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 11px 20px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 11px 20px 0px rgba(0,0,0,0.1);
+}
+
+// Only show the h3 when .swiper-slide-active is present above the parent.
+// This is weird and I don't completely understand it, but it works!
+// @see https://blog.angular-university.io/angular-host-context/
+:host-context(.swiper-slide-active) {
+  h3, p {
+    visibility: visible;
+  }
+}
+
+h3 {
+  visibility: hidden;
+  margin-top: 1em;
+  font-size: 14pt;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  > :nth-child(2) {
+    margin-top: auto;
+    margin-bottom: 2.5em;
+  }
+}

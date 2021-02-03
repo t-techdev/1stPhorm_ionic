@@ -1,0 +1,68 @@
+@mixin chat-tag($posNeg: 1) {
+  content: " ";
+  width: 40px;
+  height: 9px;
+  bottom: 0;
+  background-color: inherit;
+  position: absolute;
+  z-index: 100;
+  transform: skewX($posNeg * 50deg);
+  -webkit-transform: skewX($posNeg * 50deg);
+}
+
+.wrapper-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-parts {
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.chat-sender .message-parts {
+  &:after {
+    @include chat-tag(1);
+    right: -5px;
+  }
+
+  background-color: #aed8e6;
+  margin-left: auto;
+  position: relative;
+}
+
+.chat-receiver {
+  .time {
+    text-align: left;
+  }
+
+  .message-parts {
+    background-color: var(--ion-1p-lightest);
+    margin-right: auto;
+
+    &:before {
+      @include chat-tag(-1);
+      left: -5px;
+      bottom: 10px;
+    }
+  }
+}
+
+.chat-wrapper {
+  border-radius: 6px;
+  position: relative;
+  margin: 15px 5vw;
+
+  .time {
+    font-size: var(--ion-1p-font-size-caption);
+    color: var(--ion-color-dark);
+    text-align: right;
+    margin-bottom: .25em;
+  }
+}
+
+.message-part + .message-part {
+  margin-top: .5em;
+}
