@@ -342,5 +342,3 @@ The application sets a number of notifications:
 # Other notes
 
 The application is currently being transitioned to using states and observables for it's internal mechanisms. The services also send to use Promises where Observables should be used.
-
-It is a work in progress.
